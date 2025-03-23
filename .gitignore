@@ -1,0 +1,7 @@
+# Ignore the bin and obj directories
+bin/
+obj/
+
+# Ignore Rider specific files
+.idea/
+.Rider/
