@@ -1,0 +1,15 @@
+{
+  "AutoOpenStorage": true,
+  "DefaultPassLength": 12,
+  "CharacterSets": [
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "012345678901234567890123456789",
+    "abcdefghijklmnopqrstuvwxyz",
+    "!@#$%^&*_+{}[]|\\:;\"'<>?/~`()_-+="
+  ],
+  "PassHashIteration": 1005000,
+  "ShowSettings": {
+    "Password": true,
+    "AllData": true
+  }
+}

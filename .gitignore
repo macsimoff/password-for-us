@@ -5,3 +5,6 @@ obj/
 # Ignore Rider specific files
 .idea/
 .Rider/
+
+# Ignore all .log files
+*.log
