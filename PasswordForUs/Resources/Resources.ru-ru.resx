@@ -1,0 +1,96 @@
+﻿<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="WelcomeMessage" xml:space="preserve">
+        <value>Программа PasswordForUs запущена</value>
+    </data>
+    <data name="OpenFilePrompt" xml:space="preserve">
+        <value>Вам необходимо открыть(o) или импортировать(i) файл с паролями.</value>
+    </data>
+    <data name="Add_AddPassword" xml:space="preserve">
+        <value>Пароль был добавлен в хранилище.</value>
+    </data>
+    <data name="Add_EnterLoginPrompt" xml:space="preserve">
+        <value>Введите логин:</value>
+    </data>
+    <data name="Add_AdditionalDataPrompt" xml:space="preserve">
+        <value>
+            Введите дополнительные данные
+            формат --&lt;ключ&gt; &lt;значение&gt;
+            напишите 'end' или пустую строку для завершения:
+        </value>
+    </data>
+    <data name="Add_EnterPasswordPrompt" xml:space="preserve">
+        <value>Введите ПАРОЛЬ или введите Y/y для автоматической генерации пароля:</value>
+    </data>
+    <data name="Add_EnterURLPrompt" xml:space="preserve">
+        <value>Введите URL-адрес:</value>
+    </data>
+    <data name="Base_SynchronizationCompleted" xml:space="preserve">
+        <value>Синхронизация завершена.</value>
+    </data>
+    <data name="ChangePass_ThereAreMoreThanOne" xml:space="preserve">
+        <value>Существует более одной записи с указанным ID. Уточните критерии поиска.</value>
+    </data>
+    <data name="ChangePass_ThereIsNoEntry" xml:space="preserve">
+        <value>Запись с указанным ID отсутствует.</value>
+    </data>
+    <data name="ChangePass_PasswordChanged" xml:space="preserve">
+        <value>Пароль был изменён.</value>
+    </data>
+    <data name="Delete_PasswordDeleted" xml:space="preserve">
+        <value>Пароль был удалён.</value>
+    </data>
+    <data name="Empty_TryingToExecute" xml:space="preserve">
+        <value>Программа пытается выполнить пустую команду - что-то пошло не так!</value>
+    </data>
+    <data name="FindCommand_TryingToFind" xml:space="preserve">
+        <value>Попытка найти ID:{0} URL:{1} Имя:{3}...</value>
+    </data>
+    <data name="FindCommand_NotFound" xml:space="preserve">
+        <value>Программа ничего не нашла.</value>
+    </data>
+    <data name="FindCommand_Done" xml:space="preserve">
+        <value>готово</value>
+    </data>
+    <data name="GeneratePass_GeneratePass" xml:space="preserve">
+        <value>Сгенерированный пароль: {0}</value>
+    </data>
+    <data name="Import_End" xml:space="preserve">
+        <value>Команда импорта завершена.</value>
+    </data>
+    <data name="Import_FileParsed" xml:space="preserve">
+        <value>Файл был обработан.</value>
+    </data>
+    <data name="Open_FileOpened" xml:space="preserve">
+        <value>Файл с паролями был открыт.</value>
+    </data>
+    <data name="SetPass_WritePromt" xml:space="preserve">
+        <value>Введите пароль:</value>
+    </data>
+    <data name="SetPass_IsEmpty" xml:space="preserve">
+        <value>Пароль пуст.</value>
+    </data>
+    <data name="SetPass_HashIterationPromt" xml:space="preserve">
+        <value>Введите количество итераций хэширования для пароля:</value>
+    </data>
+    <data name="SetPass_InvalidInputInteger" xml:space="preserve">
+        <value>Неверный ввод. Пожалуйста, введите положительное целое число.</value>
+    </data>
+    <data name="SetSettings_Success" xml:space="preserve">
+        <value>Настройки успешно обновлены.</value>
+    </data>
+    <data name="ShowSettings_CurrentSettings" xml:space="preserve">
+        <value>Текущие настройки:</value>
+    </data>
+</root>

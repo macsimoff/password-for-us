@@ -16,12 +16,12 @@ public class ImportCommand(ImportCommandData commandData, FileImporter fileImpor
     {
         ImportFile();
         SynchronizeStorage(appSettings);
-        Console.WriteLine("End import command.");
+        Console.WriteLine(Resources.Resources.Import_End);
     }
 
     private void ImportFile()
     {
         fileImporter.Import(new ImportData() { Path = commandData.Path });
-        Console.WriteLine("File has been parsed.");
+        Console.WriteLine(Resources.Resources.Import_FileParsed);
     }
 }

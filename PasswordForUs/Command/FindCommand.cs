@@ -1,5 +1,4 @@
-﻿using PasswordForUs.ConsoleExtension;
-using PasswordForUs.Model;
+﻿using PasswordForUs.Model;
 using PasswordForUs.Settings;
 using PasswordForUsLibrary.DataController;
 using PasswordForUsLibrary.Model;
@@ -21,7 +20,8 @@ public class FindCommand: ICommand
 
     public void Execute(AppSettings appSettings)
     {
-        Console.WriteLine($"Trying to find {_commandData.UrlText}...");
+        Console.WriteLine(Resources.Resources.FindCommand_TryingToFind, 
+            _commandData.Id, _commandData.UrlText, _commandData.NameText);
         NodeDataModel[] items;
 
         try
@@ -35,17 +35,17 @@ public class FindCommand: ICommand
         catch (InvalidOperationException e)
         {
             Console.WriteLine(e.Message 
-                              + " You need to open(o) or to import(i) the password file or to add new node to the storage.");
+                              + Resources.Resources.OpenFilePrompt);
             return;            
         }
 
         if (items.Length == 0)
         {
-            Console.WriteLine($"The program didn't find anything.");
+            Console.WriteLine(Resources.Resources.FindCommand_NotFound);
         }
         else
         {
-            Console.WriteLine("done");
+            Console.WriteLine(Resources.Resources.FindCommand_Done);
             _nodeWriter.Write(items, appSettings.ShowSettings);
         }
 

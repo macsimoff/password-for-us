@@ -6,7 +6,7 @@ namespace PasswordForUs.Command
     {
         public void Execute(AppSettings appSettings)
         {
-            Console.WriteLine("Current Settings:");
+            Console.WriteLine(Resources.Resources.ShowSettings_CurrentSettings);
             Console.WriteLine($"AutoOpenStorage: {appSettings.AutoOpenStorage}");
             Console.WriteLine($"DefaultPassLength: {appSettings.DefaultPassLength}");
             Console.WriteLine("CharacterSets:");
@@ -16,6 +16,7 @@ namespace PasswordForUs.Command
             }
 
             Console.WriteLine($"SyncDataPath: {appSettings.SyncDataPath}");
+            Console.WriteLine($"CultureInfo: {appSettings.Culture}");
             Console.WriteLine("Show Settings:");
             Console.WriteLine($"  All: {appSettings.ShowSettings.All}");
             Console.WriteLine($"  Id: {appSettings.ShowSettings.Id}");

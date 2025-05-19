@@ -135,6 +135,11 @@ public class SetSettingsDataBuilder
             case SetSettingsKeyConst.AutoImportCode:
                 settings.AutoOpenStorage = ParseFlag(value);
                 break;
+            case SetSettingsKeyConst.CultureCode:
+                settings.Culture = value;
+                break;
+            default:
+                throw new ArgumentException($"Invalid key: {key}");
         }
     }
 

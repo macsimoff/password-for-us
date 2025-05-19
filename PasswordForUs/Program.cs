@@ -1,4 +1,5 @@
-﻿using PasswordForUs.Const;
+﻿using System.Globalization;
+using PasswordForUs.Const;
 using PasswordForUs.Settings;
 using PasswordForUsLibrary.Exception;
 
@@ -8,9 +9,11 @@ static class Program
 {
     static void Main()
     {
-        Console.WriteLine("--PasswordForUs started");
-        
         var settings = AppSettingsBuilder.Build("settings.json");
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(settings.Culture);
+        
+        Console.WriteLine(Resources.Resources.WelcomeMessage);
+
         if(string.IsNullOrEmpty(settings.Pass))
             TryExecuteCommand(settings, CommandConstants.CommandName[CommandConstants.SetPassCode]);
 
@@ -20,7 +23,7 @@ static class Program
         }
         else
         {
-            Console.WriteLine("You need to open(o) or to import(i) the file with stared passwords.");
+            Console.WriteLine(Resources.Resources.OpenFilePrompt);
         }
 
         while (true)
@@ -42,6 +45,8 @@ static class Program
                 break;
             try
             {
+                if(Thread.CurrentThread.CurrentUICulture.Name != settings.Culture)
+                    Thread.CurrentThread.CurrentUICulture = new CultureInfo(settings.Culture);
                 var command = CommandBuilder.Build(input);
                 command.Execute(settings);
                 break;

@@ -16,6 +16,6 @@ public class OpenCommand(OpenCommandData commandData, Synchronizer synchronizer,
             SynchronizeStorage(commandData.Path, appSettings.Pass, appSettings.PassHashIteration);
         else
             SynchronizeStorage(appSettings);
-        Console.WriteLine("The password file has been opened.");
+        Console.WriteLine(Resources.Resources.Open_FileOpened);
     }
 }

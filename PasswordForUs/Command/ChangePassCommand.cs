@@ -20,19 +20,19 @@ public class ChangePassCommand(
         var list = searchController.Search(new SearchDataModel(commandData.Id)).ToList();
         if(list.Count > 1)
         {
-            Console.WriteLine("There are more than one entry with the specified ID. Please, specify the search criteria.");
+            Console.WriteLine(Resources.Resources.ChangePass_ThereAreMoreThanOne);
             return;
         }
         if(list.Count == 0)
         {
-            Console.WriteLine("There is no entry with the specified ID.");
+            Console.WriteLine(Resources.Resources.ChangePass_ThereIsNoEntry);
             return;
         }
 
         var data = MergeData(list[0]);
         saveController.ChangePassword(data);
         SynchronizeStorage(appSettings);
-        Console.WriteLine("Password was changed.");
+        Console.WriteLine(Resources.Resources.ChangePass_PasswordChanged);
     }
 
     private NodeDataModel MergeData(NodeDataModel data)

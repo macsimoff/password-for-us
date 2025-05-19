@@ -17,6 +17,6 @@ public class DeleteCommand(
     {
         controller.DeletePassword(commandData.Id);
         SynchronizeStorage(appSettings);
-        Console.WriteLine("Password was deleted.");
+        Console.WriteLine(Resources.Resources.Delete_PasswordDeleted);
     }
 }

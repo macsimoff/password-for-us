@@ -15,4 +15,5 @@ public class AppSettings
     public bool AutoOpenStorage { get; set; }
     public ShowSettings ShowSettings { get; set; } = new();
     public int PassHashIteration { get; set; }
+    public string Culture { get; set; } = "en-US";
 }

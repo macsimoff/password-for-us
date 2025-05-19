@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            <xsd:complexType>
+                <xsd:choice maxOccurs="unbounded">
+                    <xsd:element name="data">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                            </xsd:sequence>
+                            <xsd:attribute name="name" type="xsd:string" use="required" />
+                            <xsd:attribute name="xml:space" type="xsd:string" fixed="preserve" />
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:choice>
+            </xsd:complexType>
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="WelcomeMessage" xml:space="preserve">
+        <value>--PasswordForUs started</value>
+    </data>
+    <data name="OpenFilePrompt" xml:space="preserve">
+        <value>You need to open(o) or to import(i) the file with stored passwords.</value>
+    </data>
+    <data name="Add_AddPassword" xml:space="preserve">
+        <value>Password was added in storage.</value>
+    </data>
+    <data name="Add_EnterLoginPrompt" xml:space="preserve">
+        <value>Enter Login:</value>
+    </data>
+    <data name="Add_AdditionalDataPrompt" xml:space="preserve">
+        <value>
+            Enter additional data
+            format --&lt;key&gt; &lt;value&gt;
+            write 'end' or empty string for finish:
+        </value>
+    </data>
+    <data name="Add_EnterPasswordPrompt" xml:space="preserve">
+        <value>enter PASSWORD or enter Y/y to generate password automate:</value>
+    </data>
+    <data name="Add_EnterURLPrompt" xml:space="preserve">
+        <value>enter URL address:</value>
+    </data>
+    <data name="Base_SynchronizationCompleted" xml:space="preserve">
+        <value>Synchronization completed.</value>
+    </data>
+    <data name="ChangePass_ThereAreMoreThanOne" xml:space="preserve">
+        <value>There are more than one entry with the specified ID. Please, specify the search criteria.</value>
+    </data>
+    <data name="ChangePass_ThereIsNoEntry" xml:space="preserve">
+        <value>There is no entry with the specified ID.</value>
+    </data>
+    <data name="ChangePass_PasswordChanged" xml:space="preserve">
+        <value>Password was changed.</value>
+    </data>
+    <data name="Delete_PasswordDeleted" xml:space="preserve">
+        <value>Password was deleted.</value>
+    </data>
+    <data name="Empty_TryingToExecute" xml:space="preserve">
+        <value>The program is trying to execute an empty command - something is wrong!</value>
+    </data>
+    <data name="FindCommand_TryingToFind" xml:space="preserve">
+        <value>Trying to find ID:{0} URL:{1} Name:{3}...</value>
+    </data>
+    <data name="FindCommand_NotFound" xml:space="preserve">
+        <value>The program didn't find anything.</value>
+    </data>
+    <data name="FindCommand_Done" xml:space="preserve">
+        <value>done</value>
+    </data>
+    <data name="GeneratePass_GeneratePass" xml:space="preserve">
+        <value>Generated Password: {0}</value>
+    </data>
+    <data name="Import_End" xml:space="preserve">
+        <value>End import command.</value>
+    </data>
+    <data name="Import_FileParsed" xml:space="preserve">
+        <value>File has been parsed.</value>
+    </data>
+    <data name="Open_FileOpened" xml:space="preserve">
+        <value>The password file has been opened.</value>
+    </data>
+    <data name="SetPass_WritePromt" xml:space="preserve">
+        <value>Write password please:</value>
+    </data>
+    <data name="SetPass_IsEmpty" xml:space="preserve">
+        <value>Password is empty.</value>
+    </data>
+    <data name="SetPass_HashIterationPromt" xml:space="preserve">
+        <value>Write hash iteration for password please:</value>
+    </data>
+    <data name="SetPass_InvalidInputInteger" xml:space="preserve">
+        <value>Invalid input. Please enter a positive integer.</value>
+    </data>
+    <data name="SetSettings_Success" xml:space="preserve">
+        <value>Settings updated successfully.</value>
+    </data>
+    <data name="ShowSettings_CurrentSettings" xml:space="preserve">
+        <value>Current Settings:</value>
+    </data>
+</root>

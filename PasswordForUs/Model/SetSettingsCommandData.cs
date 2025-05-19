@@ -11,4 +11,5 @@ public class SetSettingsCommandData
     public bool? AutoOpenStorage { get; set; }
     public SetShowSettingsData? Show { get; set; }
     public string? Pass { get; set; }
+    public string? Culture { get; set; }
 }

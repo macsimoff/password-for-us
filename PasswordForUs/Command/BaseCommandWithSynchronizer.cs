@@ -23,7 +23,7 @@ public abstract class BaseCommandWithSynchronizer(Synchronizer synchronizer,ISec
             Key = key,
             IV = iv
         });
-        Console.WriteLine("Synchronization completed.");
+        Console.WriteLine(Resources.Resources.Base_SynchronizationCompleted);
     }
 
     public abstract void Execute(AppSettings appSettings);

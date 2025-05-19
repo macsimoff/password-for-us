@@ -16,13 +16,13 @@ public class SetPassCommand(string pass) : ICommand
     {
         while (true)
         {
-            Console.WriteLine("Write password please:");
+            Console.WriteLine(Resources.Resources.SetPass_WritePromt);
 
             var pass = Console.ReadLine();
             if (!string.IsNullOrEmpty(pass))
                 return pass;
             
-            Console.WriteLine("Password is empty.");
+            Console.WriteLine(Resources.Resources.SetPass_IsEmpty);
         }
     }
     
@@ -30,7 +30,7 @@ public class SetPassCommand(string pass) : ICommand
     {
         while (true)
         {
-            Console.WriteLine("Write hash iteration for password please:");
+            Console.WriteLine(Resources.Resources.SetPass_HashIterationPromt);
             var input = Console.ReadLine();
 
             if (int.TryParse(input, out int iteration) && iteration > 0)
@@ -38,7 +38,7 @@ public class SetPassCommand(string pass) : ICommand
                 return iteration;
             }
 
-            Console.WriteLine("Invalid input. Please enter a positive integer.");
+            Console.WriteLine(Resources.Resources.SetPass_InvalidInputInteger);
         }
     }
 }   

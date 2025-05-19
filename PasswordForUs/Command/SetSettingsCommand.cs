@@ -20,8 +20,17 @@ namespace PasswordForUs.Command
             UpdateSyncDataPath(appSettings);
             UpdateAutoImport(appSettings);
             UpdateShowSettings(appSettings);
+            UpdateCulture(appSettings);
 
-            Console.WriteLine("Settings updated successfully.");
+            Console.WriteLine(Resources.Resources.SetSettings_Success);
+        }
+
+        private void UpdateCulture(AppSettings appSettings)
+        {
+            if(_data.Culture != null)
+            {
+                appSettings.Culture = _data.Culture;
+            }
         }
 
         private void UpdatePass(AppSettings appSettings)

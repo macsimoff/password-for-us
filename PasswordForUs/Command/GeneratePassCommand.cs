@@ -18,6 +18,6 @@ public class GeneratePassCommand : ICommand
     {
         var password = _passGenerator.Generate(_passLength>0 ? _passLength : appSettings.DefaultPassLength, 
                                                     appSettings.CharacterSets);
-        Console.WriteLine($"Generated Password: {password}");
+        Console.WriteLine(Resources.Resources.GeneratePass_GeneratePass, password);
     }
 }

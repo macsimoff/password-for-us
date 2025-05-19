@@ -21,7 +21,7 @@ public class AddCommand(
         var model = GetModel(appSettings);
         controller.AddNewPassword(model);
         SynchronizeStorage(appSettings);
-       Console.WriteLine("Password was added.");
+       Console.WriteLine(Resources.Resources.Add_AddPassword);
     }
 
     private NodeDataModel GetModel(AppSettings appSettings)
@@ -45,17 +45,13 @@ public class AddCommand(
 
     private string GetLogin()
     {
-        Console.WriteLine("Enter Login:");
+        Console.WriteLine(Resources.Resources.Add_EnterLoginPrompt);
         return Console.ReadLine() ?? "";
     }
 
     private Dictionary<string, string> GetAdditionalDate()
     {
-        Console.WriteLine("""
-                          Enter additional data 
-                          format --<key> <value> 
-                          write 'end' or empty string for finish:
-                          """);
+        Console.WriteLine(Resources.Resources.Add_AdditionalDataPrompt);
         var additionalDate = new Dictionary<string, string>();
         while (true)
         {
@@ -84,14 +80,14 @@ public class AddCommand(
 
     private string GetPass(AppSettings appSettings)
     {
-        Console.WriteLine("enter PASSWORD or enter Y/y to generate password automate:");
+        Console.WriteLine(Resources.Resources.Add_EnterPasswordPrompt);
         var s = Console.ReadLine();
         return s == null || s.ToLower() == "y" ? generator.Generate(appSettings.DefaultPassLength, appSettings.CharacterSets) : s;
     }
 
     private string GetUrl()
     {
-        Console.WriteLine("enter URL address:");
+        Console.WriteLine(Resources.Resources.Add_EnterURLPrompt);
         return Console.ReadLine() ?? "";
     }
 }

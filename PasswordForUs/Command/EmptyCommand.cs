@@ -8,7 +8,7 @@ public class EmptyCommand: ICommand
 
     public void Execute(AppSettings appSettings)
     {
-        Console.WriteLine("The program is trying to execute an empty command - something is wrong!");
+        Console.WriteLine(Resources.Resources.Empty_TryingToExecute);
     }
 
     public string GetHelp()
