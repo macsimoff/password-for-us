@@ -112,4 +112,7 @@
     <data name="ShowSettings_CurrentSettings" xml:space="preserve">
         <value>Current Settings:</value>
     </data>
+    <data name="Help_InvalidСommandName" xml:space="preserve">
+        <value>Invalid command name. See all command list.</value>
+    </data>
 </root>

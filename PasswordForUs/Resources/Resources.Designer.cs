@@ -199,6 +199,15 @@ namespace PasswordForUs.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid command name. See all command list..
+        /// </summary>
+        internal static string Help_InvalidСommandName {
+            get {
+                return ResourceManager.GetString("Help_InvalidСommandName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to End import command..
         /// </summary>
         internal static string Import_End {

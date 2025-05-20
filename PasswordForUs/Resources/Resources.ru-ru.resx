@@ -93,4 +93,7 @@
     <data name="ShowSettings_CurrentSettings" xml:space="preserve">
         <value>Текущие настройки:</value>
     </data>
+    <data name="Help_InvalidСommandName" xml:space="preserve">
+        <value>Недопустимое имя команды. Просмотреть весь список команд.</value>
+    </data>
 </root>

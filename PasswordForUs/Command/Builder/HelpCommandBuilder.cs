@@ -17,7 +17,7 @@ public class HelpCommandBuilder: ICommandBuilder
         
         var res = new HelpCommandData(commandData[0]);
         if(res.CommandCode == CommandConstants.EmptyCode) 
-            Console.WriteLine("Invalid command name. See all command list.");
+            Console.WriteLine(Resources.Resources.Help_InvalidСommandName);
             
         return res;
     }
