@@ -6,7 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <PublishAot>true</PublishAot>
-        <InvariantGlobalization>true</InvariantGlobalization>
+        <InvariantGlobalization>false</InvariantGlobalization>
         <LangVersion>14</LangVersion>
     </PropertyGroup>
 
@@ -14,6 +14,21 @@
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.0-rc.1.25451.107" />
       <PackageReference Include="Spectre.Console" Version="0.51.2-preview.0.3" />
       <PackageReference Include="Spectre.Console.Cli" Version="0.51.2-preview.0.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="Resources\DescriptionResources.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>DescriptionResources.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Resources\DescriptionResources.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>DescriptionResources.resx</DependentUpon>
+      </Compile>
     </ItemGroup>
 
 </Project>

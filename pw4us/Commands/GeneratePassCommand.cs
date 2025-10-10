@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel;
+using pw4us.Attributes;
+using pw4us.Resources;
 using Spectre.Console.Cli;
 namespace pw4us.Commands;
 
@@ -7,7 +9,7 @@ public class GeneratePassCommand: AsyncCommand<GeneratePassCommand.Settings>
     public class Settings : CommandSettings
     {
         [CommandOption("-l|--length <LENGTH>")]
-        [Description("Length of the password to generate")]
+        [LocalizedDescription(nameof(DescriptionResources.GPC_Length))]
         public int Length { get; set; } = 0;
     }
 
