@@ -21,6 +21,10 @@
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>DescriptionResources.Designer.cs</LastGenOutput>
       </EmbeddedResource>
+      <EmbeddedResource Update="Resources\StringsResourse.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>StringsResourse.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>
@@ -29,6 +33,16 @@
         <AutoGen>True</AutoGen>
         <DependentUpon>DescriptionResources.resx</DependentUpon>
       </Compile>
+      <Compile Update="Resources\StringsResourse.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>StringsResourse.resx</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\PasswordForUs.Abstractions\PasswordForUs.Abstractions.csproj" />
+      <ProjectReference Include="..\PasswordForUsLibrary\PasswordForUsLibrary.csproj" />
     </ItemGroup>
 
 </Project>

@@ -1,11 +1,10 @@
 ﻿using System.Text;
+using PasswordForUs.Abstractions;
 
 namespace PasswordForUsLibrary.PassGenerator;
 
-public class PassGenerator
+public class PassGenerator:IPassGenerator
 {
-    private const int DefaultPassLength = 12;
-
     private static readonly string[] DefaultCharacterSets = {
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
         "012345678901234567890123456789",
@@ -13,7 +12,7 @@ public class PassGenerator
         "!@#$%^&*_+{}[]|\\:;\"'<>?/~`()_-+=",
     };
 
-    public string Generate(int passLength = DefaultPassLength, string[]? characterSets = null)
+    public string Generate(int passLength, string[]? characterSets)
     {
         var s = (characterSets?.Length > 0 ? characterSets : DefaultCharacterSets);
         var sFull = GetFullString(s);
