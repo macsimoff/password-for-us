@@ -5,6 +5,7 @@ obj/
 # Ignore Rider specific files
 .idea/
 .Rider/
+*.DotSettings.user
 
 # Ignore all .log files
 *.log
