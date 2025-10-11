@@ -15,6 +15,12 @@
         <value>Генерирует случайный пароль</value>
     </data>
     <data name="GPC_Length" xml:space="preserve">
-        <value>устанавливает длинну пароля</value>
+        <value>Устанавливает длинну пароля</value>
+    </data>
+    <data name="LogSettings_LogFile" xml:space="preserve">
+        <value>Путь и имя файла для логирования</value>
+    </data>
+    <data name="LogSettings_LogLevel" xml:space="preserve">
+        <value>Минимальный уровень логирования</value>
     </data>
 </root>

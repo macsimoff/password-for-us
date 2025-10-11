@@ -27,6 +27,6 @@ public class MSDITypeRegistrar(ServiceCollection services) :  ITypeRegistrar
             throw new ArgumentNullException(nameof(func));
         }
 
-        services.AddSingleton(service, (provider) => func());
+        services.AddSingleton(service, (_) => func());
     }
 }

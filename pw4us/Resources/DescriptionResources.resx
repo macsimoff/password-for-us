@@ -24,4 +24,10 @@
     <data name="GPC_Length" xml:space="preserve">
         <value>Length of the password to generate</value>
     </data>
+    <data name="LogSettings_LogFile" xml:space="preserve">
+        <value>Path and file name for logging</value>
+    </data>
+    <data name="LogSettings_LogLevel" xml:space="preserve">
+        <value>Minimum level for logging</value>
+    </data>
 </root>

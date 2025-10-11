@@ -76,5 +76,23 @@ namespace pw4us.Resources {
                 return ResourceManager.GetString("GPC_Length", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Path and file name for logging.
+        /// </summary>
+        internal static string LogSettings_LogFile {
+            get {
+                return ResourceManager.GetString("LogSettings_LogFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimum level for logging.
+        /// </summary>
+        internal static string LogSettings_LogLevel {
+            get {
+                return ResourceManager.GetString("LogSettings_LogLevel", resourceCulture);
+            }
+        }
     }
 }
