@@ -5,12 +5,13 @@ namespace PasswordForUsLibrary.PassGenerator;
 
 public class PassGenerator:IPassGenerator
 {
-    private static readonly string[] DefaultCharacterSets = {
+   private static readonly string[] DefaultCharacterSets =
+    [
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
         "012345678901234567890123456789",
         "abcdefghijklmnopqrstuvwxyz",
-        "!@#$%^&*_+{}[]|\\:;\"'<>?/~`()_-+=",
-    };
+        "!@#$%^&*_+{}[]|\\:;\"'<>?/~`()_-+="
+    ];
 
     public string Generate(int passLength, string[]? characterSets)
     {
@@ -19,7 +20,7 @@ public class PassGenerator:IPassGenerator
         
         if (passLength < s.Length)
         {
-            throw new ArgumentException("Password length should be greater than the number of categories.");
+            throw new ArgumentException($"Password length must be at least equal to the number of selected character categories ({s.Length}).");
         }
 
         var tempAlphabet = GetAlphabet(passLength, s, sFull);
