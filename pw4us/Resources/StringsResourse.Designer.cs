@@ -60,11 +60,38 @@ namespace pw4us.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ERROR.
+        /// </summary>
+        internal static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The password length must be greater than the number of character types used to generate the password..
+        /// </summary>
+        internal static string GPC_ArgumentExceptionMessage {
+            get {
+                return ResourceManager.GetString("GPC_ArgumentExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Generated password.
         /// </summary>
         internal static string GPC_GeneratePass {
             get {
                 return ResourceManager.GetString("GPC_GeneratePass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An unexpected error occurred.
+        /// </summary>
+        internal static string UnhandledException_Message {
+            get {
+                return ResourceManager.GetString("UnhandledException_Message", resourceCulture);
             }
         }
     }

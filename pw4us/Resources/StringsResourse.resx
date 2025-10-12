@@ -21,4 +21,13 @@
     <data name="GPC_GeneratePass" xml:space="preserve">
         <value>Generated password</value>
     </data>
+    <data name="UnhandledException_Message" xml:space="preserve">
+        <value>An unexpected error occurred</value>
+    </data>
+    <data name="Error" xml:space="preserve">
+        <value>ERROR</value>
+    </data>
+    <data name="GPC_ArgumentExceptionMessage" xml:space="preserve">
+        <value>The password length must be greater than the number of character types used to generate the password.</value>
+    </data>
 </root>

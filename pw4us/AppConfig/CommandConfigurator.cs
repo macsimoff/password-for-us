@@ -10,10 +10,9 @@ public abstract class CommandConfigurator
     public static void Configure(IConfigurator config)
     {
         config.SetApplicationName("pw4us");
-#if DEBUG
-        config.PropagateExceptions();
-        config.ValidateExamples();
-#endif
+
+        config.SetExceptionHandler(UnhandledExceptionHandler.OnException);
+
         config.SetInterceptor(new LogInterceptor());
         config.AddCommand<GeneratePassCommand>("genpass")
             .WithAlias("gp")

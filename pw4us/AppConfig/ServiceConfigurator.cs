@@ -10,6 +10,12 @@ public abstract class ServiceConfigurator
 {
     public static void Configure(ServiceCollection services)
     {
+        // Дефолтный путь лога на случай исключений до Interceptor
+        var baseDir = AppContext.BaseDirectory;
+        var logsDir = Path.Combine(baseDir, "log");
+        Directory.CreateDirectory(logsDir);
+        LoggingEnricher.Path = Path.Combine(logsDir, "application.log");
+
         services.AddLogging(configure =>
             configure.AddSerilog(new LoggerConfiguration()
                 .MinimumLevel.ControlledBy(LogInterceptor.LogLevel)

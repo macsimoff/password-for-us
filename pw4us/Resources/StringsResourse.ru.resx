@@ -14,4 +14,13 @@
     <data name="GPC_GeneratePass" xml:space="preserve">
         <value>Новый пароль</value>
     </data>
+    <data name="UnhandledException_Message" xml:space="preserve">
+        <value>Произошла непредвиденная ошибка</value>
+    </data>
+    <data name="Error" xml:space="preserve">
+        <value>ОШИБКА</value>
+    </data>
+    <data name="GPC_ArgumentExceptionMessage" xml:space="preserve">
+        <value>Длина пароля должна быть больше количество типов символов, с помощью которых генерируется пароль</value>
+    </data>
 </root>
