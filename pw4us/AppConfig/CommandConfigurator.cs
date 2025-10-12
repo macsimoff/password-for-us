@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using pw4us.Commands;
+﻿using pw4us.Commands;
 using pw4us.Resources;
 using Spectre.Console.Cli;
 using pw4us.Infrastructure;

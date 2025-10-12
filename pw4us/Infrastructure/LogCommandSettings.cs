@@ -26,20 +26,15 @@ public class LogCommandSettings : CommandSettings
 
 public sealed class VerbosityConverter : TypeConverter
 {
-    private readonly Dictionary<string, LogEventLevel> _lookup;
-
-    public VerbosityConverter()
+    private readonly Dictionary<string, LogEventLevel> _lookup = new(StringComparer.OrdinalIgnoreCase)
     {
-        _lookup = new Dictionary<string, LogEventLevel>(StringComparer.OrdinalIgnoreCase)
-        {
-            {"d", LogEventLevel.Debug},
-            {"v", LogEventLevel.Verbose},
-            {"i", LogEventLevel.Information},
-            {"w", LogEventLevel.Warning},
-            {"e", LogEventLevel.Error},
-            {"f", LogEventLevel.Fatal}
-        };
-    }
+        {"d", LogEventLevel.Debug},
+        {"v", LogEventLevel.Verbose},
+        {"i", LogEventLevel.Information},
+        {"w", LogEventLevel.Warning},
+        {"e", LogEventLevel.Error},
+        {"f", LogEventLevel.Fatal}
+    };
 
     public override object ConvertFrom(ITypeDescriptorContext? context, CultureInfo? culture, object value)
     {

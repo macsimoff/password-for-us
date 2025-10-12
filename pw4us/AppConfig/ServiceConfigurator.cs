@@ -15,7 +15,11 @@ public abstract class ServiceConfigurator
                 .MinimumLevel.ControlledBy(LogInterceptor.LogLevel)
                 .Enrich.With<LoggingEnricher>()
                 .WriteTo.Map(LoggingEnricher.LogFilePathPropertyName,
-                    (logFilePath, wt) => wt.File($"{logFilePath}"), 1)
+                    (logFilePath, wt) => wt.File(
+                        path: $"{logFilePath}",
+                        rollingInterval: RollingInterval.Day,
+                        retainedFileCountLimit: 14
+                    ), 1)
                 .CreateLogger()
             )
         );

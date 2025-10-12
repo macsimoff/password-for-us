@@ -1,5 +1,4 @@
-﻿using System.Data;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using PasswordForUs.Abstractions;
 using pw4us.Attributes;
 using pw4us.Infrastructure;
