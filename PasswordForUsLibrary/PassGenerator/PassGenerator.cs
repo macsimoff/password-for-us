@@ -1,11 +1,12 @@
-﻿using System.Text;
+﻿using System.Security.Cryptography;
+using System.Text;
 using PasswordForUs.Abstractions;
 
 namespace PasswordForUsLibrary.PassGenerator;
 
-public class PassGenerator:IPassGenerator
+public class PassGenerator : IPassGenerator
 {
-   private static readonly string[] DefaultCharacterSets =
+    private static readonly string[] DefaultCharacterSets =
     [
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
         "012345678901234567890123456789",
@@ -15,63 +16,48 @@ public class PassGenerator:IPassGenerator
 
     public string Generate(int passLength, string[]? characterSets)
     {
-        var s = (characterSets?.Length > 0 ? characterSets : DefaultCharacterSets);
-        var sFull = GetFullString(s);
+        if (passLength <= 0)
+            throw new ArgumentOutOfRangeException(nameof(passLength), "The password length must be greater than zero.");
+
+        var sets = ValidateSets(characterSets, out var validSets) ? validSets : DefaultCharacterSets;
         
-        if (passLength < s.Length)
+        if (passLength < sets.Length)
+            throw new ArgumentException(
+                $"Password length ({passLength}) must be at least equal to the number of selected character categories ({sets.Length})."
+            );
+
+        var fullSet = string.Concat(sets);
+
+        var chars = new List<char>(passLength);
+        
+        chars.AddRange(sets.Select(set => set[RandomNumberGenerator.GetInt32(set.Length)]));
+        for (var i = chars.Count; i < passLength; i++)
         {
-            throw new ArgumentException($"Password length must be at least equal to the number of selected character categories ({s.Length}).");
+            chars.Add(fullSet[RandomNumberGenerator.GetInt32(fullSet.Length)]);
         }
 
-        var tempAlphabet = GetAlphabet(passLength, s, sFull);
-        var tempSequence = tempAlphabet.Keys.Order();
-
-        var buff = new StringBuilder(passLength);
-        foreach (var n in tempSequence)
-        {
-            buff.Append(tempAlphabet[n]);
-        }
-
-        return buff.ToString();
+        return Shuffle(chars);
     }
 
-    private string GetFullString(string[] s)
+    private bool ValidateSets(string[]? characterSets, out string[] sets)
     {
-        var buff = new StringBuilder();
-        foreach (var item in s)
+        if (characterSets == null)
         {
-            buff.Append(item);
+            sets = [];
+            return false;
         }
 
-        return buff.ToString();
+        sets = characterSets.Where(s => !string.IsNullOrEmpty(s)).ToArray();
+        return sets.Length != 0;
     }
 
-    private Dictionary<int, char> GetAlphabet(int passLength, string[] s, string sFull)
+    private string Shuffle(List<char> chars)
     {
-        var rnd = new Random();
-        var res = new Dictionary<int, char>();
-
-        foreach (var sItem in s)
+        for (var i = chars.Count - 1; i > 0; i--)
         {
-            var k = GetRandomNumber(sItem.Length);
-            res.Add(rnd.Next(), sItem[k]);
+            var j = RandomNumberGenerator.GetInt32(i + 1);
+            (chars[i], chars[j]) = (chars[j], chars[i]);
         }
-
-        while (res.Count < passLength)
-        {
-            var n = GetRandomNumber(sFull.Length);
-            var key = rnd.Next();
-            if (!res.ContainsKey(key)) res.Add(key, sFull[n]);
-        }
-
-        return res;
-    }
-
-    private int GetRandomNumber(int maxValue)
-    {
-        var rnd = new Random();
-        var number = rnd.Next(0,int.MaxValue); 
-        number %= maxValue;
-        return number;
+        return new string(chars.ToArray());
     }
 }
