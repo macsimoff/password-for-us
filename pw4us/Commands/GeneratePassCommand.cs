@@ -5,6 +5,7 @@ using pw4us.Infrastructure;
 using pw4us.Resources;
 using Spectre.Console;
 using Spectre.Console.Cli;
+
 namespace pw4us.Commands;
 
 public class GeneratePassCommand(IPassGenerator generator, ILogger<GeneratePassCommand> logger) 
@@ -20,12 +21,14 @@ public class GeneratePassCommand(IPassGenerator generator, ILogger<GeneratePassC
     public override Task<int> ExecuteAsync(CommandContext context, Settings settings)
     {
         logger.LogDebug("Generating password with length {Length}", settings.Length);
-        string password;
 
         try
         {
-             password = generator.Generate(settings.Length, null);
-            //todo: add character sets from settings
+            var password = generator.Generate(settings.Length, null);
+            var icon = AnsiConsole.Profile.Capabilities.Unicode ? "🔑 " : "> ";
+            AnsiConsole.MarkupLine($"[yellow]{StringsResourse.GPC_GeneratePass}[/]");
+            AnsiConsole.MarkupLine($"{icon}[gray]{password}[/]");
+            return Task.FromResult(0);
         }
         catch (ArgumentException ex)
         {
@@ -33,11 +36,5 @@ public class GeneratePassCommand(IPassGenerator generator, ILogger<GeneratePassC
             AnsiConsole.MarkupLine($"[red]{StringsResourse.Error}:[/] [gray]{StringsResourse.GPC_ArgumentExceptionMessage}[/]");
             return Task.FromResult(1);
         }
-
-        var icon = AnsiConsole.Profile.Capabilities.Unicode ? "🔑 " : "> ";
-        AnsiConsole.MarkupLine($"[yellow]{StringsResourse.GPC_GeneratePass}[/]");
-        AnsiConsole.MarkupLine($"{icon}[gray]{password}[/]");
-        
-        return Task.FromResult(0);
     }
 }

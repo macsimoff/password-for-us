@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
 using PasswordForUs.Abstractions;
 using PasswordForUsLibrary.PassGenerator;
 using pw4us.Infrastructure;
@@ -8,13 +9,13 @@ namespace pw4us.AppConfig;
 
 public abstract class ServiceConfigurator
 {
-    public static void Configure(ServiceCollection services)
+    public static void Configure(ServiceCollection services, IConfiguration configuration)
     {
-        // Дефолтный путь лога на случай исключений до Interceptor
-        var baseDir = AppContext.BaseDirectory;
-        var logsDir = Path.Combine(baseDir, "log");
-        Directory.CreateDirectory(logsDir);
-        LoggingEnricher.Path = Path.Combine(logsDir, "application.log");
+        InitializeLoggingDirectory();
+
+        services.AddSingleton(configuration);
+
+        services.AddOptions<GeneratePassSettings>().BindConfiguration("GeneratePass").ValidateOnStart();
 
         services.AddLogging(configure =>
             configure.AddSerilog(new LoggerConfiguration()
@@ -29,6 +30,15 @@ public abstract class ServiceConfigurator
                 .CreateLogger()
             )
         );
+        services.AddSingleton<LogInterceptor>();
         services.AddTransient<IPassGenerator, PassGenerator>();
+    }
+
+    private static void InitializeLoggingDirectory()
+    {
+        var baseDir = AppContext.BaseDirectory;
+        var logsDir = Path.Combine(baseDir, "log");
+        Directory.CreateDirectory(logsDir);
+        LoggingEnricher.Path = Path.Combine(logsDir, "application.log");
     }
 }

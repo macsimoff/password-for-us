@@ -1,4 +1,6 @@
-﻿using Serilog.Core;
+﻿using Microsoft.Extensions.Configuration;
+using Serilog.Core;
+using Serilog.Events;
 using Spectre.Console.Cli;
 
 namespace pw4us.Infrastructure;
@@ -6,6 +8,27 @@ namespace pw4us.Infrastructure;
 public class LogInterceptor : ICommandInterceptor
 {
     public static readonly LoggingLevelSwitch LogLevel = new();
+
+    public LogInterceptor(IConfiguration configuration)
+    {
+        var levelString = configuration["Serilog:MinimumLevel:Default"];
+        if (!string.IsNullOrWhiteSpace(levelString) && TryParseLevel(levelString, out var level))
+            LogLevel.MinimumLevel = level;
+    }
+
+    private static bool TryParseLevel(string s, out LogEventLevel level)
+    {
+        var lookup = new Dictionary<string, LogEventLevel>(StringComparer.OrdinalIgnoreCase)
+        {
+            { "Debug", LogEventLevel.Debug },
+            { "Verbose", LogEventLevel.Verbose },
+            { "Information", LogEventLevel.Information },
+            { "Warning", LogEventLevel.Warning },
+            { "Error", LogEventLevel.Error },
+            { "Fatal", LogEventLevel.Fatal }
+        };
+        return lookup.TryGetValue(s, out level);
+    }
 
     public void Intercept(CommandContext context, CommandSettings settings)
     {
@@ -33,14 +56,13 @@ public class LogInterceptor : ICommandInterceptor
             if (!string.IsNullOrEmpty(targetDir)) Directory.CreateDirectory(targetDir);
 
             LoggingEnricher.Path = targetPath;
-
-           LogLevel.MinimumLevel = logSettings.LogLevel;
+            LogLevel.MinimumLevel = logSettings.LogLevel ?? LogLevel.MinimumLevel;
         }
         else
         {
             Directory.CreateDirectory(logsDir);
             LoggingEnricher.Path = Path.Combine(logsDir, "application.log");
-            LogLevel.MinimumLevel = Serilog.Events.LogEventLevel.Information;
+            LogLevel.MinimumLevel = LogEventLevel.Debug;
         }
     }
 }

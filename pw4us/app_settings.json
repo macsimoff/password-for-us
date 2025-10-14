@@ -1,0 +1,10 @@
+﻿{
+  "GeneratePass": {
+    "Length": 16
+  },
+  "Serilog": {
+    "MinimumLevel": {
+      "Default": "Information"
+    }
+  }
+}

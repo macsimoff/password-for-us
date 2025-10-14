@@ -16,17 +16,12 @@ public class LogCommandSettings : CommandSettings
     [CommandOption("--logLevel")]
     [LocalizedDescription(nameof(DescriptionResources.LogSettings_LogLevel))]
     [TypeConverter(typeof(VerbosityConverter))]
-#if DEBUG
-    [DefaultValue(LogEventLevel.Debug)]
-#else
-    [DefaultValue(LogEventLevel.Information)]
-#endif
-    public LogEventLevel LogLevel { get; set; }
+    public LogEventLevel? LogLevel { get; set; }
 }
 
 public sealed class VerbosityConverter : TypeConverter
 {
-    private readonly Dictionary<string, LogEventLevel> _lookup = new(StringComparer.OrdinalIgnoreCase)
+    private static readonly Dictionary<string, LogEventLevel> Lookup = new(StringComparer.OrdinalIgnoreCase)
     {
         {"d", LogEventLevel.Debug},
         {"v", LogEventLevel.Verbose},
@@ -38,12 +33,12 @@ public sealed class VerbosityConverter : TypeConverter
 
     public override object ConvertFrom(ITypeDescriptorContext? context, CultureInfo? culture, object value)
     {
-        if (value is not string stringValue) 
+        if (value is not string stringValue)
             throw new NotSupportedException("Can't convert value to verbosity.");
-        
-        var result = _lookup.TryGetValue(stringValue, out var verbosity);
+
+        var result = Lookup.TryGetValue(stringValue, out var verbosity);
         if (result) return verbosity;
-           
+
         const string format = "The value '{0}' is not a valid verbosity.";
         var message = string.Format(CultureInfo.InvariantCulture, format, value);
         throw new InvalidOperationException(message);
