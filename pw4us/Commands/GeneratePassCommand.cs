@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using PasswordForUs.Abstractions;
+using pw4us.AppConfig;
 using pw4us.Attributes;
 using pw4us.Infrastructure;
 using pw4us.Resources;
@@ -8,23 +10,28 @@ using Spectre.Console.Cli;
 
 namespace pw4us.Commands;
 
-public class GeneratePassCommand(IPassGenerator generator, ILogger<GeneratePassCommand> logger) 
+public class GeneratePassCommand(IPassGenerator generator, 
+    ILogger<GeneratePassCommand> logger, IOptions<GeneratePassSettings> options) 
     : AsyncCommand<GeneratePassCommand.Settings>
 {
     public class Settings : LogCommandSettings
     {
         [CommandOption("-l|--length <LENGTH>")]
         [LocalizedDescription(nameof(DescriptionResources.GPC_Length))]
-        public int Length { get; set; } = 12;
+        public int Length { get; set; }
     }
 
     public override Task<int> ExecuteAsync(CommandContext context, Settings settings)
     {
         logger.LogDebug("Generating password with length {Length}", settings.Length);
-
+        
         try
         {
-            var password = generator.Generate(settings.Length, null);
+            var passLength = settings.Length > 0 ? 
+                settings.Length : options.Value.Length;
+            var alphabet = options.Value.Alphabet;
+            var password = generator.Generate(passLength, alphabet);
+            
             var icon = AnsiConsole.Profile.Capabilities.Unicode ? "🔑 " : "> ";
             AnsiConsole.MarkupLine($"[yellow]{StringsResourse.GPC_GeneratePass}[/]");
             AnsiConsole.MarkupLine($"{icon}[gray]{password}[/]");

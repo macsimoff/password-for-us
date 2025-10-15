@@ -1,6 +1,12 @@
 ﻿{
   "GeneratePass": {
-    "Length": 16
+    "Length": 16,
+    "Alphabet": [
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+      "012345678901234567890123456789",
+      "abcdefghijklmnopqrstuvwxyz",
+      "!@#$%^&*_+{}[]|\\:;\"'<>?/~`()_-+="
+    ]
   },
   "Serilog": {
     "MinimumLevel": {
