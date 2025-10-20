@@ -11,6 +11,9 @@ public abstract class CommandConfigurator
     {
         config.SetApplicationName("pw4us");
         config.SetExceptionHandler(UnhandledExceptionHandler.OnException);
+#if DEBUG
+        config.PropagateExceptions();
+#endif
 
         config.AddCommand<GeneratePassCommand>("genpass")
             .WithAlias("gp")
