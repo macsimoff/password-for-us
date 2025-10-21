@@ -1,5 +1,5 @@
 ﻿using System.Text.Json;
-using PasswordForUsLibrary.DataRepository;
+using PasswordForUs.Abstractions;
 using PasswordForUsLibrary.DataSynchronizer;
 using PasswordForUsLibrary.Model;
 

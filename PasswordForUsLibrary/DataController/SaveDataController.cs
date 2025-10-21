@@ -1,5 +1,5 @@
-﻿using PasswordForUsLibrary.DataRepository;
-using PasswordForUsLibrary.Model;
+﻿using PasswordForUs.Abstractions;
+using PasswordForUs.Abstractions.Models;
 
 namespace PasswordForUsLibrary.DataController;
 
@@ -12,12 +12,12 @@ public class SaveDataController
         _repository = repo;
     }
 
-    public void AddNewPassword(NodeDataModel model)
+    public void AddNewPassword(NodeData model)
     {
         _repository.AddNode(model);
     }
     
-    public void ChangePassword(NodeDataModel model)
+    public void ChangePassword(NodeData model)
     {
         _repository.ChangeNode(model);
     }

@@ -1,6 +1,4 @@
-﻿using FileSynchronizer;
-using MemoryStorage;
-using PasswordForUs.Command.Builder.Factory.Repo;
+﻿using PasswordForUs.Command.Builder.Factory.Repo;
 using PasswordForUs.Command.Builder.Factory.Security;
 using PasswordForUs.Command.Builder.Factory.Sync;
 using PasswordForUs.Model;
@@ -31,19 +29,20 @@ public class ImportCommandBuilder(IRepositoryFactory repoFactory, ISynchronizerF
         var synchronizer = syncFactory.Create(repo);
         
         var fileInfo = new FileInfo(data.Path);
-        var fileImporter = new FileImporter(FileParser(fileInfo.Extension), repo);
+        var fileImporter = new FileImporter(GetFileParser(fileInfo.Extension), repo);
 
         var security = securityFactory.Create();
         return new ImportCommand(data, fileImporter, synchronizer,security);
     }
 
-    private IFileParser FileParser(string extension)
+    private IFileParser GetFileParser(string extension)
     {
         return extension switch
         {
-            ".txt" => new HomeFileParser(new ReaderByBlankLinesDelimiter(), new HomeFileStringParser()),
+            ".txt" => new HomeFileParser(new HomeFileReader(), new HomeFileStringParser()),
             ".json" => new JsonFileParser(),
-            _ => new HomeFileParser(new ReaderByBlankLinesDelimiter(), new HomeFileStringParser())
+            ".csv" => new CsvFileParser(new HomeFileReader(), new GoogleCsvStringParser()),
+            _ => new HomeFileParser(new HomeFileReader(), new HomeFileStringParser())
         };
     }
 }

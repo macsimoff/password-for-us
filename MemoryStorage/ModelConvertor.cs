@@ -1,10 +1,8 @@
-﻿using PasswordForUsLibrary.Model;
-
-namespace MemoryStorage;
+﻿namespace MemoryStorage;
 
 internal static class ModelConvertor
 {
-    public static NodeData Convert(NodeDataModel node)
+    public static NodeData Convert(PasswordForUs.Abstractions.Models.NodeData node)
     {
         return new NodeData
         (
@@ -20,9 +18,9 @@ internal static class ModelConvertor
         );
     }
 
-    public static NodeDataModel Convert(NodeData node)
+    public static PasswordForUs.Abstractions.Models.NodeData Convert(NodeData node)
     {
-        return new NodeDataModel(
+        return new PasswordForUs.Abstractions.Models.NodeData(
             node.Guid,
             node.ChangeTimeTicks,
             node.Id,

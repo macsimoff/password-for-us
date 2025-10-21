@@ -1,6 +1,6 @@
-﻿namespace PasswordForUsLibrary.Model;
+﻿namespace PasswordForUs.Abstractions.Models;
 
-public class NodeDataModel(Guid guid, long changeTimeTicks, int id, string? user, string? title, string? url, string? login, string? password)
+public class NodeData(Guid guid, long changeTimeTicks, int id, string? user, string? title, string? url, string? login, string? password)
 {
     public Guid Guid { get; set; } = guid;
     public long ChangeTimeTicks { get; set;} = changeTimeTicks;
@@ -12,16 +12,16 @@ public class NodeDataModel(Guid guid, long changeTimeTicks, int id, string? user
     public string? Password { get; set;} = password;
     public Dictionary<string, string> Data { get; set;} = new(0);
 
-    public NodeDataModel(): this(Guid.Empty,0, -1,"","","","","")
+    public NodeData(): this(Guid.Empty,0, -1,"","","","","")
     {
     }
 
-    public NodeDataModel(string? user, string? title, string? url, string? login, string? password)
+    public NodeData(string? user, string? title, string? url, string? login, string? password)
         : this(Guid.NewGuid(), DateTime.Now.Ticks,-1, user, title, url, login, password)
     {
     }
 
-    public NodeDataModel(Guid guid, long changeTimeTicks, int id,string? user, string? url, string? title, string? login, string? password, Dictionary<string, string> data)
+    public NodeData(Guid guid, long changeTimeTicks, int id,string? user, string? url, string? title, string? login, string? password, Dictionary<string, string> data)
         : this (guid, changeTimeTicks,id, user, title, url, login, password)
     {
         Data = data;
@@ -29,14 +29,14 @@ public class NodeDataModel(Guid guid, long changeTimeTicks, int id, string? user
 
     public override bool Equals(object? obj)
     {
-        if (obj is NodeDataModel other)
+        if (obj is NodeData other)
         {
             return this.Equals(other);
         }
         return false;
     }
 
-    protected bool Equals(NodeDataModel other)
+    protected bool Equals(NodeData other)
     {
         return Guid.Equals(other.Guid) 
                && ChangeTimeTicks == other.ChangeTimeTicks 

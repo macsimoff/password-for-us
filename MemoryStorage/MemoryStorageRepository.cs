@@ -1,11 +1,11 @@
-﻿using PasswordForUsLibrary.DataRepository;
-using PasswordForUsLibrary.Model;
+﻿using PasswordForUs.Abstractions;
+using PasswordForUs.Abstractions.Models;
 
 namespace MemoryStorage;
 
 public class MemoryStorageRepository: IRepository
 {
-    public void AddNode(NodeDataModel node)
+    public void AddNode(PasswordForUs.Abstractions.Models.NodeData node)
     {
         var data = ModelConvertor.Convert(node);
         var lastKey = Storage.Data.Keys.Count > 0? Storage.Data.Keys.Last() : -1;
@@ -14,24 +14,25 @@ public class MemoryStorageRepository: IRepository
         SetNewStorageVersion();
     }
 
-    public void ImportNode(NodeDataModel node)
+    public void ImportNode(PasswordForUs.Abstractions.Models.NodeData node)
     {
         var data = ModelConvertor.Convert(node);
         Storage.Data.Add(data.Id, data);
     }
 
-    public IEnumerable<NodeDataModel> FindNode(SearchDataModel model)
+    public IEnumerable<PasswordForUs.Abstractions.Models.NodeData> FindNode(SearchDataModel model)
     {
         if (Storage.Data.Count == 0)
         {
             throw new InvalidOperationException("There are no nodes in the storage.");
         }
 
-        var result = new List<NodeDataModel>();
+        var result = new List<PasswordForUs.Abstractions.Models.NodeData>();
         if (model.ById)
         {
             result.AddRange(Storage.Data.TryGetValue(model.Id, out var value)? 
-                new List<NodeDataModel> {ModelConvertor.Convert(value)} : new List<NodeDataModel>()
+                new List<PasswordForUs.Abstractions.Models.NodeData> {ModelConvertor.Convert(value)} 
+                : new List<PasswordForUs.Abstractions.Models.NodeData>()
             );
         }
 
@@ -44,7 +45,7 @@ public class MemoryStorageRepository: IRepository
         return result;
     }
 
-    public IEnumerable<NodeDataModel> GetAll()
+    public IEnumerable<PasswordForUs.Abstractions.Models.NodeData> GetAll()
     {
         return Storage.Data.Select(x =>ModelConvertor.Convert(x.Value));
     }
@@ -55,7 +56,7 @@ public class MemoryStorageRepository: IRepository
         //todo: Реализовать дархив для таких записей и созможность востанавливать их.
     }
 
-    public void ChangeNode(NodeDataModel model)
+    public void ChangeNode(PasswordForUs.Abstractions.Models.NodeData model)
     {
         Storage.Data[model.Id] = ModelConvertor.Convert(model);
         SetNewStorageVersion();

@@ -1,7 +1,7 @@
-﻿using PasswordForUs.Model;
+﻿using PasswordForUs.Abstractions.Models;
+using PasswordForUs.Model;
 using PasswordForUs.Settings;
 using PasswordForUsLibrary.DataController;
-using PasswordForUsLibrary.Model;
 
 namespace PasswordForUs.Command;
 
@@ -22,7 +22,7 @@ public class FindCommand: ICommand
     {
         Console.WriteLine(Resources.Resources.FindCommand_TryingToFind, 
             _commandData.Id, _commandData.UrlText, _commandData.NameText);
-        NodeDataModel[] items;
+        NodeData[] items;
 
         try
         {

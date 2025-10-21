@@ -1,4 +1,4 @@
-﻿namespace PasswordForUsLibrary.Model;
+﻿namespace PasswordForUs.Abstractions.Models;
 
 public class SearchDataModel
 {

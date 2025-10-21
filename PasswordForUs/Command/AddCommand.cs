@@ -1,9 +1,9 @@
-﻿using PasswordForUs.Model;
+﻿using PasswordForUs.Abstractions.Models;
+using PasswordForUs.Model;
 using PasswordForUs.Security;
 using PasswordForUs.Settings;
 using PasswordForUsLibrary.DataController;
 using PasswordForUsLibrary.DataSynchronizer;
-using PasswordForUsLibrary.Model;
 using PasswordForUsLibrary.PassGenerator;
 
 namespace PasswordForUs.Command;
@@ -24,14 +24,14 @@ public class AddCommand(
        Console.WriteLine(Resources.Resources.Add_AddPassword);
     }
 
-    private NodeDataModel GetModel(AppSettings appSettings)
+    private NodeData GetModel(AppSettings appSettings)
     {
         if (string.IsNullOrEmpty(data.Url))
         {
             data.Url = GetUrl();
         }
 
-        return new NodeDataModel(
+        return new NodeData(
             Guid.NewGuid(),
             DateTime.Now.Ticks,
             0, 

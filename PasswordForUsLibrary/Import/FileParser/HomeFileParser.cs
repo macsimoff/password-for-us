@@ -1,13 +1,15 @@
-﻿using PasswordForUsLibrary.Import.FileReader;
+﻿using PasswordForUs.Abstractions.Models;
+using PasswordForUsLibrary.Import.FileReader;
 using PasswordForUsLibrary.Import.StringParser;
-using PasswordForUsLibrary.Model;
 
 namespace PasswordForUsLibrary.Import.FileParser;
 
 public class HomeFileParser(IFileReader fileReader, IStringParser stringParser) : IFileParser
 {
-    public IEnumerable<NodeDataModel> ParseNodes(StreamReader streamReader)
+    public IEnumerable<NodeData> ParseNodes(StreamReader streamReader)
     {
-        return fileReader.Read(streamReader).Select(stringParser.CreateNodeData).ToList();
+        return fileReader.Read(streamReader)
+            .Where(l => !string.IsNullOrWhiteSpace(l))
+            .Select(stringParser.CreateNodeData);
     }
 }

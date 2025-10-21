@@ -1,4 +1,5 @@
-﻿using PasswordForUsLibrary.DataSynchronizer;
+﻿using PasswordForUs.Abstractions.Models;
+using PasswordForUsLibrary.DataSynchronizer;
 using PasswordForUsLibrary.Model;
 
 namespace TestsForPasswordForUs;
@@ -9,8 +10,8 @@ public class SynchronizerTests
     public void MergeData_ShouldReturnDefaultData_WhenBothDataArrayAreEmpty()
     {
         // Arrange
-        var data1 = new SynchronizeData(Guid.Empty, 0,new List<NodeDataModel>());
-        var data2 = new SynchronizeData(Guid.Empty, 0,new List<NodeDataModel>());
+        var data1 = new SynchronizeData(Guid.Empty, 0,new List<NodeData>());
+        var data2 = new SynchronizeData(Guid.Empty, 0,new List<NodeData>());
         var synchronizer = new TestSynchronizer();
 
         // Act
@@ -30,13 +31,13 @@ public class SynchronizerTests
         var version = Guid.NewGuid();
         var guid = Guid.NewGuid();
         var time = DateTime.Now;
-        var data1 = new SynchronizeData(version, time.Ticks,new List<NodeDataModel>
+        var data1 = new SynchronizeData(version, time.Ticks,new List<NodeData>
         {
-            new NodeDataModel {Guid = guid, Id = 1, ChangeTimeTicks = time.Ticks, Title = "Node1" }
+            new NodeData {Guid = guid, Id = 1, ChangeTimeTicks = time.Ticks, Title = "Node1" }
         });
-        var data2 = new SynchronizeData(version, time.Ticks, new List<NodeDataModel>
+        var data2 = new SynchronizeData(version, time.Ticks, new List<NodeData>
         {
-            new NodeDataModel {Guid = guid, Id = 1, ChangeTimeTicks = time.Ticks, Title = "Node1" }
+            new NodeData {Guid = guid, Id = 1, ChangeTimeTicks = time.Ticks, Title = "Node1" }
         });
         var synchronizer = new TestSynchronizer();
 
@@ -63,13 +64,13 @@ public class SynchronizerTests
         // Arrange
         var time = DateTime.Now;
         var time2 = DateTime.Now.AddDays(1);
-        var data1 = new SynchronizeData(Guid.NewGuid(), time.Ticks,new List<NodeDataModel>
+        var data1 = new SynchronizeData(Guid.NewGuid(), time.Ticks,new List<NodeData>
         {
-            new NodeDataModel {Guid = Guid.NewGuid(), Id = 1, ChangeTimeTicks = time.Ticks, Title = "Node1" }
+            new NodeData {Guid = Guid.NewGuid(), Id = 1, ChangeTimeTicks = time.Ticks, Title = "Node1" }
         });
-        var data2 = new SynchronizeData(Guid.NewGuid(), time2.Ticks,new List<NodeDataModel>
+        var data2 = new SynchronizeData(Guid.NewGuid(), time2.Ticks,new List<NodeData>
         {
-            new NodeDataModel {Guid = Guid.NewGuid(), Id = 2, ChangeTimeTicks = time2.Ticks, Title = "Node2" }
+            new NodeData {Guid = Guid.NewGuid(), Id = 2, ChangeTimeTicks = time2.Ticks, Title = "Node2" }
         });
         var synchronizer = new TestSynchronizer();
 
@@ -103,14 +104,14 @@ public class SynchronizerTests
         var guid1 = Guid.NewGuid();
         var time = DateTime.Now;
         var time2 = DateTime.Now.AddDays(-1);
-        var data1 = new SynchronizeData(version1, time.Ticks, new List<NodeDataModel>
+        var data1 = new SynchronizeData(version1, time.Ticks, new List<NodeData>
         {
-            new NodeDataModel { Guid = guid1, Id = 1, ChangeTimeTicks = time2.Ticks, Title = "Node1" },
-            new NodeDataModel {Guid = Guid.NewGuid(), Id = 2, ChangeTimeTicks = time.Ticks, Title = "Node2" }
+            new NodeData { Guid = guid1, Id = 1, ChangeTimeTicks = time2.Ticks, Title = "Node1" },
+            new NodeData {Guid = Guid.NewGuid(), Id = 2, ChangeTimeTicks = time.Ticks, Title = "Node2" }
         });
-        var data2 = new SynchronizeData(version2, time2.Ticks, new List<NodeDataModel>
+        var data2 = new SynchronizeData(version2, time2.Ticks, new List<NodeData>
         {
-            new NodeDataModel { Guid = guid1, Id = 1, ChangeTimeTicks = time2.Ticks, Title = "Node1" }
+            new NodeData { Guid = guid1, Id = 1, ChangeTimeTicks = time2.Ticks, Title = "Node1" }
         });
         var synchronizer = new TestSynchronizer();
 
@@ -142,14 +143,14 @@ public class SynchronizerTests
         var guid1 = Guid.NewGuid();
         var time = DateTime.Now.AddDays(-1);
         var time2 = DateTime.Now;
-        var data1 = new SynchronizeData(version1,  time.Ticks,new List<NodeDataModel>
+        var data1 = new SynchronizeData(version1,  time.Ticks,new List<NodeData>
         {
-            new NodeDataModel { Guid = guid1, Id = 1, ChangeTimeTicks = time.Ticks,Title = "Node1" }
+            new NodeData { Guid = guid1, Id = 1, ChangeTimeTicks = time.Ticks,Title = "Node1" }
         });
-        var data2 = new SynchronizeData(version2,  time2.Ticks,new List<NodeDataModel>
+        var data2 = new SynchronizeData(version2,  time2.Ticks,new List<NodeData>
         {
-            new NodeDataModel { Guid = guid1, Id = 1,  ChangeTimeTicks = time.Ticks, Title = "Node1" },
-            new NodeDataModel {Guid = Guid.NewGuid(), Id = 2,  ChangeTimeTicks = time2.Ticks, Title = "Node2" }
+            new NodeData { Guid = guid1, Id = 1,  ChangeTimeTicks = time.Ticks, Title = "Node1" },
+            new NodeData {Guid = Guid.NewGuid(), Id = 2,  ChangeTimeTicks = time2.Ticks, Title = "Node2" }
         });
         var synchronizer = new TestSynchronizer();
 
@@ -181,13 +182,13 @@ public class SynchronizerTests
         var guid1 = Guid.NewGuid();
         var time = DateTime.Now;
         var oldTime = time.AddDays(-1);
-        var data1 = new SynchronizeData(version1, time.Ticks, new List<NodeDataModel>
+        var data1 = new SynchronizeData(version1, time.Ticks, new List<NodeData>
         {
-            new NodeDataModel {Guid = guid1, ChangeTimeTicks = time.Ticks, Id = 1, Title = "Node1", Login = "newLogin"}
+            new NodeData {Guid = guid1, ChangeTimeTicks = time.Ticks, Id = 1, Title = "Node1", Login = "newLogin"}
         });
-        var data2 = new SynchronizeData(version2,  oldTime.Ticks,new List<NodeDataModel>
+        var data2 = new SynchronizeData(version2,  oldTime.Ticks,new List<NodeData>
         {
-            new NodeDataModel {Guid = guid1, ChangeTimeTicks = oldTime.Ticks, Id = 1, Title = "Node1", Login = "oldLogin" }
+            new NodeData {Guid = guid1, ChangeTimeTicks = oldTime.Ticks, Id = 1, Title = "Node1", Login = "oldLogin" }
         });
         var synchronizer = new TestSynchronizer();
 
@@ -220,11 +221,11 @@ public class SynchronizerTests
         var guid1 = Guid.NewGuid();
         var time = DateTime.Now;
         var oldTime = time.AddDays(-1);
-        var data1 = new SynchronizeData(version1,  oldTime.Ticks,new List<NodeDataModel>
+        var data1 = new SynchronizeData(version1,  oldTime.Ticks,new List<NodeData>
         {
             new() { Guid = guid1, ChangeTimeTicks = oldTime.Ticks, Id = 1, Title = "Node1", Login = "oldLogin"}
         });
-        var data2 = new SynchronizeData(version2, time.Ticks,new List<NodeDataModel>
+        var data2 = new SynchronizeData(version2, time.Ticks,new List<NodeData>
         {
             new() { Guid = guid1, ChangeTimeTicks = time.Ticks, Id = 1, Title = "Node1", Login = "newLogin"}
         });
@@ -258,11 +259,11 @@ public class SynchronizerTests
         var version2 = Guid.NewGuid();
         var guid1 = Guid.NewGuid();
         var time = DateTime.Now;
-        var data1 = new SynchronizeData(version1, time.Ticks,new List<NodeDataModel>
+        var data1 = new SynchronizeData(version1, time.Ticks,new List<NodeData>
         {
             new() {Guid = guid1, ChangeTimeTicks = time.Ticks, Id = 1, Title = "Node1", Login = "newLogin1"}
         });
-        var data2 = new SynchronizeData(version2, time.Ticks,new List<NodeDataModel>
+        var data2 = new SynchronizeData(version2, time.Ticks,new List<NodeData>
         {
             new() {Guid = guid1, ChangeTimeTicks = time.Ticks, Id = 1, Title = "Node1", Login = "newLogin2"}
         });
@@ -298,11 +299,11 @@ public class SynchronizerTests
         var version2 = Guid.NewGuid();
         var guid1 = Guid.NewGuid();
         var time = DateTime.Now;
-        var data1 = new SynchronizeData(version1, time.Ticks,new List<NodeDataModel>
+        var data1 = new SynchronizeData(version1, time.Ticks,new List<NodeData>
         {
             new() { Guid = guid1, ChangeTimeTicks = time.Ticks, Id = 1, Title = "newName", Login = "Login"}
         });
-        var data2 = new SynchronizeData(version2, time.Ticks,new List<NodeDataModel>
+        var data2 = new SynchronizeData(version2, time.Ticks,new List<NodeData>
         {
             new() { Guid = guid1,  ChangeTimeTicks = time.Ticks, Id = 1, Title = "Name", Login = "newLogin"}
         });

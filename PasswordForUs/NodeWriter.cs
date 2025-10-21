@@ -1,4 +1,5 @@
-﻿using PasswordForUs.ConsoleExtension;
+﻿using PasswordForUs.Abstractions.Models;
+using PasswordForUs.ConsoleExtension;
 using PasswordForUs.Settings;
 using PasswordForUsLibrary.Model;
 
@@ -6,7 +7,7 @@ namespace PasswordForUs;
 
 public class NodeWriter
 {
-    public void Write(NodeDataModel[] items, ShowSettings show)
+    public void Write(NodeData[] items, ShowSettings show)
     {
         Console.Write("\n");
 
@@ -27,7 +28,7 @@ public class NodeWriter
         Console.Write("\n");
     }
 
-    private void WriteProperties(NodeDataModel[] itemsSlice, int lineLength, ShowSettings show)
+    private void WriteProperties(NodeData[] itemsSlice, int lineLength, ShowSettings show)
     {
         if (show.Id)
             WriteRows(itemsSlice, lineLength, item => $"id >> {item.Id}");
@@ -45,7 +46,7 @@ public class NodeWriter
             WriteData(itemsSlice, lineLength, show);
     }
 
-    private void WriteData(NodeDataModel[] itemsSlice, int lineLength, ShowSettings show)
+    private void WriteData(NodeData[] itemsSlice, int lineLength, ShowSettings show)
     {
         if (show.AllData || show.DataNames.Length == 0)
         {
@@ -72,7 +73,7 @@ public class NodeWriter
         }
     }
 
-    private void WriteRows(NodeDataModel[] items, int lineLength, Func<NodeDataModel, string> getRowText)
+    private void WriteRows(NodeData[] items, int lineLength, Func<NodeData, string> getRowText)
     {
         foreach (var node in items)
         {
@@ -90,7 +91,7 @@ public class NodeWriter
         Console.Write("\n");
     }
 
-    private int CalculateLineLength(NodeDataModel[] items)
+    private int CalculateLineLength(NodeData[] items)
     {
         var maxLength = 0;
 

@@ -1,14 +1,14 @@
 ﻿using System.Text.Json;
-using PasswordForUsLibrary.Model;
+using PasswordForUs.Abstractions.Models;
 
 namespace PasswordForUsLibrary.Import.FileParser;
 
 public class JsonFileParser:IFileParser
 {
-    public IEnumerable<NodeDataModel> ParseNodes(StreamReader streamReader)
+    public IEnumerable<NodeData> ParseNodes(StreamReader streamReader)
     {
         var jsonString = streamReader.ReadToEnd();
-        var data = JsonSerializer.Deserialize<List<NodeDataModel>>(jsonString);
+        var data = JsonSerializer.Deserialize<List<NodeData>>(jsonString);
         data ??= [];
         foreach (var node in data)
         {

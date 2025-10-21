@@ -1,4 +1,5 @@
-﻿using PasswordForUsLibrary.DataRepository;
+﻿
+using PasswordForUs.Abstractions;
 
 namespace PasswordForUsLibrary.DataController;
 

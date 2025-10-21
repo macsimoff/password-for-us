@@ -1,9 +1,9 @@
-﻿using PasswordForUs.Model;
+﻿using PasswordForUs.Abstractions.Models;
+using PasswordForUs.Model;
 using PasswordForUs.Security;
 using PasswordForUs.Settings;
 using PasswordForUsLibrary.DataController;
 using PasswordForUsLibrary.DataSynchronizer;
-using PasswordForUsLibrary.Model;
 
 namespace PasswordForUs.Command;
 
@@ -35,7 +35,7 @@ public class ChangePassCommand(
         Console.WriteLine(Resources.Resources.ChangePass_PasswordChanged);
     }
 
-    private NodeDataModel MergeData(NodeDataModel data)
+    private NodeData MergeData(NodeData data)
     {
         if (commandData.User != null)
         {

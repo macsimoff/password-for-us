@@ -1,4 +1,4 @@
-﻿using PasswordForUsLibrary.DataRepository;
+﻿using PasswordForUs.Abstractions;
 
 namespace PasswordForUs.Command.Builder.Factory.Repo;
 

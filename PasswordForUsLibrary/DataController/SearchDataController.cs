@@ -1,19 +1,12 @@
-﻿using PasswordForUsLibrary.DataRepository;
-using PasswordForUsLibrary.Model;
+﻿using PasswordForUs.Abstractions;
+using PasswordForUs.Abstractions.Models;
 
 namespace PasswordForUsLibrary.DataController;
 
-public class SearchDataController
+public class SearchDataController(IRepository repository) : ISearchDataController
 {
-    private readonly IRepository _repository;
-
-    public SearchDataController(IRepository repository)
+    public IEnumerable<NodeData> Search(SearchDataModel searchModel)
     {
-        _repository = repository;
-    }
-
-    public IEnumerable<NodeDataModel> Search(SearchDataModel searchModel)
-    {
-        return _repository.FindNode(searchModel);
+        return repository.FindNode(searchModel);
     }
 }

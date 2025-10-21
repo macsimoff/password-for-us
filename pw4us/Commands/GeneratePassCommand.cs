@@ -32,7 +32,7 @@ public class GeneratePassCommand(IPassGenerator generator,
             var alphabet = options.Value.Alphabet;
             var password = Markup.Escape(generator.Generate(passLength, alphabet));
             
-            var icon = AnsiConsole.Profile.Capabilities.Unicode ? "🔑 " : "> ";
+            var icon = AnsiConsole.Profile.Capabilities.Unicode ? "🔑 " : "-> ";
             AnsiConsole.MarkupLine($"[yellow]{StringsResourse.GPC_GeneratePass}[/]");
             AnsiConsole.MarkupLine($"{icon}[gray]{password}[/]");
             return Task.FromResult(0);

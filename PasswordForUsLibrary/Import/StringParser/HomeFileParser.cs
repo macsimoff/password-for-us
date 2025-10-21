@@ -1,4 +1,4 @@
-﻿using PasswordForUsLibrary.Model;
+﻿using PasswordForUs.Abstractions.Models;
 
 namespace PasswordForUsLibrary.Import.StringParser;
 
@@ -12,7 +12,7 @@ public class HomeFileStringParser: IStringParser
     public const string TagSeparator = ">>";
     public const char Delimiter = '\n';
 
-    public NodeDataModel CreateNodeData(string nodeString)
+    public NodeData CreateNodeData(string nodeString)
     {
         string?[] lines = nodeString.Split(Delimiter);
         var user = GetUser(lines);
@@ -20,7 +20,7 @@ public class HomeFileStringParser: IStringParser
         var url = GetUrl(lines);
         var login = GetLogin(lines);
         var password = GetPassword(lines);
-        var node = new NodeDataModel(user,name, url, login, password);
+        var node = new NodeData(user,name, url, login, password);
         node.Data = GetData(lines);
         return node;
     }

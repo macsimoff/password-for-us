@@ -1,8 +1,8 @@
-﻿using PasswordForUsLibrary.Model;
+﻿using PasswordForUs.Abstractions.Models;
 
 namespace PasswordForUsLibrary.Import.FileParser;
 
 public interface IFileParser
 {
-    IEnumerable<NodeDataModel> ParseNodes(StreamReader streamReader);
+    IEnumerable<NodeData> ParseNodes(StreamReader streamReader);
 }

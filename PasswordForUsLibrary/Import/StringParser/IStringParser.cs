@@ -1,8 +1,8 @@
-﻿using PasswordForUsLibrary.Model;
+﻿using PasswordForUs.Abstractions.Models;
 
 namespace PasswordForUsLibrary.Import.StringParser;
 
 public interface IStringParser
 {
-    NodeDataModel CreateNodeData(string nodeDataString);
+    NodeData CreateNodeData(string nodeDataString);
 }

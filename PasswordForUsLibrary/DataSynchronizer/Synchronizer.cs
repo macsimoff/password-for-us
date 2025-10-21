@@ -1,4 +1,5 @@
-﻿using PasswordForUsLibrary.DataRepository;
+﻿using PasswordForUs.Abstractions;
+using PasswordForUs.Abstractions.Models;
 using PasswordForUsLibrary.Model;
 
 namespace PasswordForUsLibrary.DataSynchronizer;
@@ -13,13 +14,13 @@ public abstract class Synchronizer(IRepository repo)
     {
         if (data1.Version == data2.Version)
             return Copy(data1);
-        
-        var mergedData = new List<NodeDataModel>();
+
+        var mergedData = new List<NodeData>();
         var mergedVersion = data1.ChangeTimeTicks >= data2.ChangeTimeTicks? data1.Version: data2.Version;
-        
+
         var data1Dict = data1.Data.ToDictionary(d => d.Guid);
         var data2Dict = data2.Data.ToDictionary(d => d.Guid);
-        
+
         foreach (var kvp in data1Dict)
         {
             var node1 = kvp.Value;
@@ -42,7 +43,7 @@ public abstract class Synchronizer(IRepository repo)
                 if (mergedVersion == data2.Version)
                     mergedVersion = Guid.NewGuid();
             }
-            
+
             mergedData.Add(node);
         }
 
@@ -69,7 +70,7 @@ public abstract class Synchronizer(IRepository repo)
 
     public static SynchronizeData Copy(SynchronizeData data)
     {
-        var copiedData = data.Data.Select(node => new NodeDataModel
+        var copiedData = data.Data.Select(node => new NodeData
         {
             Guid = node.Guid,
             ChangeTimeTicks = node.ChangeTimeTicks,
@@ -85,11 +86,11 @@ public abstract class Synchronizer(IRepository repo)
         return new SynchronizeData(data.Version, data.ChangeTimeTicks, copiedData);
     }
 
-    public static NodeDataModel MergeNode(NodeDataModel node1, NodeDataModel node2)
+    public static NodeData MergeNode(NodeData node1, NodeData node2)
     {
         var node = node1.ChangeTimeTicks >= node2.ChangeTimeTicks ? node1 : node2;
         
-        var mergedNode = new NodeDataModel
+        var mergedNode = new NodeData
         {
             Guid = node.Guid,
             ChangeTimeTicks = node.ChangeTimeTicks,
@@ -108,7 +109,7 @@ public abstract class Synchronizer(IRepository repo)
         return mergedNode;
     }
 
-    private static void SaveStory(NodeDataModel newNode, NodeDataModel oldNode)
+    private static void SaveStory(NodeData newNode, NodeData oldNode)
     {
         var oldTime = new DateTime(oldNode.ChangeTimeTicks);
         var dataNameSuffix = oldTime.ToShortDateString() + "_" + oldNode.ChangeTimeTicks;

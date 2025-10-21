@@ -1,6 +1,4 @@
-﻿using FileSynchronizer;
-using MemoryStorage;
-using PasswordForUs.Command.Builder.DataBuilder;
+﻿using PasswordForUs.Command.Builder.DataBuilder;
 using PasswordForUs.Command.Builder.Factory.Repo;
 using PasswordForUs.Command.Builder.Factory.Security;
 using PasswordForUs.Command.Builder.Factory.Sync;

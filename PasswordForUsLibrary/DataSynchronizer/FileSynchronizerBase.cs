@@ -1,4 +1,4 @@
-﻿using PasswordForUsLibrary.DataRepository;
+﻿using PasswordForUs.Abstractions;
 using PasswordForUsLibrary.Model;
 
 namespace PasswordForUsLibrary.DataSynchronizer;

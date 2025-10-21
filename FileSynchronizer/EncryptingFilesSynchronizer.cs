@@ -1,8 +1,8 @@
 ﻿using System.Text.Json;
-using PasswordForUsLibrary.DataRepository;
 using PasswordForUsLibrary.DataSynchronizer;
 using PasswordForUsLibrary.Model;
 using System.Security.Cryptography;
+using PasswordForUs.Abstractions;
 using PasswordForUsLibrary.Exception;
 
 namespace FileSynchronizer;
