@@ -19,5 +19,9 @@ public abstract class CommandConfigurator
             .WithAlias("gp")
             .WithDescription(DescriptionResources.GeneratePassCommand)
             .WithExample(new[] { "genpass", "--length", "16" });
+        config.AddCommand<FindCommand>("find")
+            .WithAlias("f")
+            .WithDescription(DescriptionResources.FindCommand)
+            .WithExample("find", "--name", "gitHub");
     }
 }

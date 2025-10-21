@@ -60,6 +60,42 @@ namespace pw4us.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to key of the record in the storage.
+        /// </summary>
+        internal static string FC_Id {
+            get {
+                return ResourceManager.GetString("FC_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to name or part of name in the record.
+        /// </summary>
+        internal static string FC_Name {
+            get {
+                return ResourceManager.GetString("FC_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to url is contained in a storage record.
+        /// </summary>
+        internal static string FC_Url {
+            get {
+                return ResourceManager.GetString("FC_Url", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to find a record in the storage by name, URL, or ID.
+        /// </summary>
+        internal static string FindCommand {
+            get {
+                return ResourceManager.GetString("FindCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Generate a random password.
         /// </summary>
         internal static string GeneratePassCommand {

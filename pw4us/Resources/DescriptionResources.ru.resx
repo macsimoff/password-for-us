@@ -23,4 +23,16 @@
     <data name="LogSettings_LogLevel" xml:space="preserve">
         <value>Минимальный уровень логирования</value>
     </data>
+    <data name="FindCommand" xml:space="preserve">
+        <value>найти запись в хранилище по имени, URL или идентификатору</value>
+    </data>
+    <data name="FC_Id" xml:space="preserve">
+        <value>ключ записи в хранилище</value>
+    </data>
+    <data name="FC_Url" xml:space="preserve">
+        <value>url содержащийся в записи</value>
+    </data>
+    <data name="FC_Name" xml:space="preserve">
+        <value>имя записи или его часть</value>
+    </data>
 </root>
