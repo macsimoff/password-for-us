@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using PasswordForUs.Abstractions;
 using PasswordForUsLibrary.DataController;
 using PasswordForUsLibrary.PassGenerator;
+using pw4us.AppConfig.Options;
 using pw4us.Infrastructure;
 using Serilog;
 
@@ -19,6 +20,9 @@ public abstract class ServiceConfigurator
 
         services.AddOptions<GeneratePassSettings>()
             .BindConfiguration("GeneratePass")
+            .ValidateOnStart();
+        services.AddOptions<ShowSettings>()
+            .BindConfiguration("Show")
             .ValidateOnStart();
 
         services.AddLogging(configure =>

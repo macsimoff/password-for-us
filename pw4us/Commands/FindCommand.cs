@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using PasswordForUs.Abstractions;
 using PasswordForUs.Abstractions.Models;
+using pw4us.AppConfig.Options;
 using pw4us.Attributes;
 using pw4us.Infrastructure;
 using pw4us.Resources;
@@ -12,6 +14,7 @@ namespace pw4us.Commands;
 
 public class FindCommand(
     ILogger<FindCommand> logger,
+    IOptions<ShowSettings> options,
     ISearchDataController controller): AsyncCommand<FindCommand.Settings>
 {
     public class Settings : LogCommandSettings
@@ -57,28 +60,75 @@ public class FindCommand(
             Border = TableBorder.Horizontal,
             ShowHeaders = true
         };
-        
+
+        AnsiConsole.WriteLine();
         AnsiConsole.Live(table)
             .Start(ctx => 
             {
-                table.AddColumn(new TableColumn($"[yellow]Key[/]"));
-                ctx.Refresh();
-                Thread.Sleep(300);
-
-                table.AddColumn($"[yellow]Name[/]");
-                ctx.Refresh();
-                Thread.Sleep(300);
-                
-                table.AddColumn($"[yellow]URL[/]");
-                ctx.Refresh();
-                Thread.Sleep(300);
+                CreateHeaders(table, ctx);
 
                 foreach (var node in data)
                 {
-                    table.AddRow(node.Id.ToString(), node.Title, node.Url);
+                    var rowData = new List<string>();
+                    if(options.Value.Id) rowData.Add(node.Id.ToString());
+                    if(options.Value.Name) rowData.Add(node.Title??string.Empty);
+                    if(options.Value.Url) rowData.Add(node.Url??string.Empty);
+                    if(options.Value.Login) rowData.Add(node.Login??string.Empty);
+                    if(options.Value.Password) rowData.Add(node.Password??string.Empty);
+                    if(options.Value.User) rowData.Add(node.User??string.Empty);
+                    
+                    table.AddRow(rowData.ToArray());
                     ctx.Refresh();
                     Thread.Sleep(300);
                 }
             });
+        AnsiConsole.WriteLine();
+    }
+
+    private void CreateHeaders(Table table, LiveDisplayContext ctx)
+    {
+        const int delay = 300;
+        table.Title = new TableTitle("[blue]SEARCH RESULT[/]");
+        if(options.Value.Id)
+        {
+            table.AddColumn(new TableColumn($"[yellow]Key[/]"));
+            ctx.Refresh();
+            Thread.Sleep(delay);
+        }
+
+        if (options.Value.Name)
+        {
+            table.AddColumn($"[yellow]Name[/]");
+            ctx.Refresh();
+            Thread.Sleep(delay);
+        }
+
+        if (options.Value.Url)
+        {
+            table.AddColumn($"[yellow]URL[/]");
+            ctx.Refresh();
+            Thread.Sleep(delay);
+        }
+
+        if (options.Value.Login)
+        {
+            table.AddColumn(new TableColumn($"[yellow]Login[/]"));
+            ctx.Refresh();
+            Thread.Sleep(delay);
+        }
+
+        if (options.Value.Password)
+        {
+            table.AddColumn(new TableColumn($"[yellow]Password[/]"));
+            ctx.Refresh();
+            Thread.Sleep(delay);
+        }
+
+        if (options.Value.User)
+        {
+            table.AddColumn(new TableColumn($"[yellow]User[/]"));
+            ctx.Refresh();
+            Thread.Sleep(delay);
+        }
     }
 }

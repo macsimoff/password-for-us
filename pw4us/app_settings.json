@@ -8,6 +8,12 @@
       "!@#$%^&*_+{}[]|\\:;\"'<>?/~`()_-+="
     ]
   },
+  "Show": {
+    "Id": true,
+    "Name": true,
+    "Url": true,
+    "Login": true
+  },
   "Serilog": {
     "MinimumLevel": {
       "Default": "Information"

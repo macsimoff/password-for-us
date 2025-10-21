@@ -1,6 +1,4 @@
-﻿using pw4us.Commands;
-
-namespace pw4us.AppConfig;
+﻿namespace pw4us.AppConfig.Options;
 
 public class GeneratePassSettings
 {

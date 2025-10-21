@@ -2,6 +2,9 @@
   "GeneratePass": {
     "Length": 20
   },
+  "Show": {
+    "All": true
+  },
   "Serilog": {
     "MinimumLevel": {
       "Default": "Debug"

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using PasswordForUs.Abstractions;
-using pw4us.AppConfig;
+using pw4us.AppConfig.Options;
 using pw4us.Attributes;
 using pw4us.Infrastructure;
 using pw4us.Resources;

@@ -57,13 +57,25 @@ public class JsonFileStorage: IRepository
             new NodeData
             {
                 Guid = Guid.Empty,
-                ChangeTimeTicks = 0,
-                Id = 0,
-                User = "User",
+                ChangeTimeTicks = 1234,
+                Id = 1,
+                User = "Я",
                 Url = "HTTP://localhost",
-                Title = "зАГОЛОВОК",
-                Login = "Login",
-                Password = "ОченьСекретныйПароль",
+                Title = "НАЗВАНИЕ",
+                Login = "я-Login",
+                Password = "124хъ!№;ээ",
+                Data = null
+            },
+            new NodeData
+            {
+                Guid = Guid.Empty,
+                ChangeTimeTicks = 2345,
+                Id = 2,
+                User = "Он",
+                Url = "https://translate.google.com/",
+                Title = "google",
+                Login = "google-Login",
+                Password = "фы234asd!№;ээ",
                 Data = null
             }
         ];
