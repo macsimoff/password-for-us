@@ -1,6 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FileStorage;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using PasswordForUs.Abstractions;
+using PasswordForUsLibrary.DataController;
 using PasswordForUsLibrary.PassGenerator;
 using pw4us.Infrastructure;
 using Serilog;
@@ -15,7 +17,9 @@ public abstract class ServiceConfigurator
 
         services.AddSingleton(configuration);
 
-        services.AddOptions<GeneratePassSettings>().BindConfiguration("GeneratePass").ValidateOnStart();
+        services.AddOptions<GeneratePassSettings>()
+            .BindConfiguration("GeneratePass")
+            .ValidateOnStart();
 
         services.AddLogging(configure =>
             configure.AddSerilog(new LoggerConfiguration()
@@ -30,8 +34,11 @@ public abstract class ServiceConfigurator
                 .CreateLogger()
             )
         );
+        
         services.AddSingleton<LogInterceptor>();
+        services.AddSingleton<IRepository,JsonFileStorage>();
         services.AddTransient<IPassGenerator, PassGenerator>();
+        services.AddTransient<ISearchDataController,SearchDataController>();
     }
 
     private static void InitializeLoggingDirectory()

@@ -1,23 +1,24 @@
-﻿using System.ComponentModel;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
+using PasswordForUs.Abstractions;
+using PasswordForUs.Abstractions.Models;
 using pw4us.Attributes;
 using pw4us.Infrastructure;
 using pw4us.Resources;
 using Spectre.Console;
 using Spectre.Console.Cli;
 using Spectre.Console.Extensions;
-using Spectre.Console.Rendering;
 
 namespace pw4us.Commands;
 
-public class FindCommand(ILogger<FindCommand> logger): AsyncCommand<FindCommand.Settings>
+public class FindCommand(
+    ILogger<FindCommand> logger,
+    ISearchDataController controller): AsyncCommand<FindCommand.Settings>
 {
     public class Settings : LogCommandSettings
     {
         [CommandOption("-i|--id <ID>")]
         [LocalizedDescription(nameof(DescriptionResources.FC_Id))]
-        [DefaultValue(-1)]
-        public int Id { get; set; }
+        public int? Id { get; set; }
         [CommandOption("-u|--url <URL>")]
         [LocalizedDescription(nameof(DescriptionResources.FC_Url))]
         public string? Url { get; set; }
@@ -33,14 +34,15 @@ public class FindCommand(ILogger<FindCommand> logger): AsyncCommand<FindCommand.
         
         var spinnerAnimation = GetSpinnerAnimation();
         
-        await Task.Delay(2000)
+        var data = await controller
+            .SearchAsync(new SearchDataModel(settings.Id, settings.Url, settings.Name))
             .Spinner(
                 spinnerAnimation,
                 new Style(foreground: Color.Blue));
         
-        DrowTable();
+        DrowTable(data);
 
-        return await Task.FromResult(0);
+        return 0;
     }
 
     private Spinner GetSpinnerAnimation()
@@ -48,7 +50,7 @@ public class FindCommand(ILogger<FindCommand> logger): AsyncCommand<FindCommand.
         return AnsiConsole.Profile.Capabilities.Unicode ? Spinner.Known.Clock: Spinner.Known.Binary;
     }
 
-    private void DrowTable()
+    private void DrowTable(IEnumerable<NodeData> data)
     {
         var table = new Table
         {
@@ -59,13 +61,24 @@ public class FindCommand(ILogger<FindCommand> logger): AsyncCommand<FindCommand.
         AnsiConsole.Live(table)
             .Start(ctx => 
             {
-                table.AddColumn(new TableColumn($"[yellow]Bar[/]"));
+                table.AddColumn(new TableColumn($"[yellow]Key[/]"));
                 ctx.Refresh();
                 Thread.Sleep(300);
 
-                table.AddColumn($"[yellow]Bar[/]");
+                table.AddColumn($"[yellow]Name[/]");
                 ctx.Refresh();
                 Thread.Sleep(300);
+                
+                table.AddColumn($"[yellow]URL[/]");
+                ctx.Refresh();
+                Thread.Sleep(300);
+
+                foreach (var node in data)
+                {
+                    table.AddRow(node.Id.ToString(), node.Title, node.Url);
+                    ctx.Refresh();
+                    Thread.Sleep(300);
+                }
             });
     }
 }

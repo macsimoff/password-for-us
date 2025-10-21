@@ -13,4 +13,6 @@ public interface IRepository
     Guid GetStorageDataVersion();
     void SetVersion(Guid version, long ticks);
     long GetStorageDataChangeTime();
+
+    Task<IEnumerable<NodeData>> FindNodeAsync(SearchDataModel node);
 }

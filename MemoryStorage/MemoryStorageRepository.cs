@@ -72,6 +72,11 @@ public class MemoryStorageRepository: IRepository
         return Storage.ChangeTimeTicks;
     }
 
+    public Task<IEnumerable<PasswordForUs.Abstractions.Models.NodeData>> FindNodeAsync(SearchDataModel node)
+    {
+        throw new NotImplementedException();
+    }
+
     public void SetVersion(Guid version, long ticks)
     {
         Storage.Version = version;
