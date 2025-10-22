@@ -64,7 +64,11 @@ public class JsonFileStorage: IRepository
                 Title = "НАЗВАНИЕ",
                 Login = "я-Login",
                 Password = "124хъ!№;ээ",
-                Data = null
+                Data = new Dictionary<string, string>()
+                {
+                    { "data", "token-123123123" },
+                    { "s-key", "jdl832kf92kds,do2kd" }
+                }
             },
             new NodeData
             {
@@ -76,7 +80,23 @@ public class JsonFileStorage: IRepository
                 Title = "google",
                 Login = "google-Login",
                 Password = "фы234asd!№;ээ",
-                Data = null
+                Data = new Dictionary<string, string>()
+                {
+                    { "data", "token-44400498" },
+                    { "s-key", "LFJASe84jfnlasd987412k" }
+                }
+            },
+            new NodeData
+            {
+                Guid = Guid.Empty,
+                ChangeTimeTicks = 1242,
+                Id = 3,
+                User = "Он",
+                Url = "https://translate.com/",
+                Title = "translate",
+                Login = "translate-Login",
+                Password = "KnfdR^5dknsK",
+                Data = new Dictionary<string, string>()
             }
         ];
     }
