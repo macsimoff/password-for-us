@@ -38,6 +38,11 @@ public class FindCommand(
     public override async Task<int> ExecuteAsync(CommandContext context, Settings settings)
     {
         LogCommandDebugInfo(settings);
+        if(!settings.Id.HasValue && settings.Name == null && settings.Url == null)
+        {
+            AnsiConsole.Markup("Please specify a search parameter.");
+            return -1;
+        }
 
         var spinnerAnimation = GetSpinnerAnimation();
 
