@@ -43,6 +43,7 @@ public abstract class ServiceConfigurator
         services.AddSingleton<IRepository,Storage>(n => new Storage("data.json"));
         services.AddTransient<IPassGenerator, PassGenerator>();
         services.AddTransient<ISearchDataController,SearchDataController>();
+        services.AddTransient<ISaveDataController,SaveDataController>();
     }
 
     private static void InitializeLoggingDirectory()

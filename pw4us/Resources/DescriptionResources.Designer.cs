@@ -60,6 +60,15 @@ namespace pw4us.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to add a new entry to the storage.
+        /// </summary>
+        internal static string AddCommand {
+            get {
+                return ResourceManager.GetString("AddCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to key of the record in the storage.
         /// </summary>
         internal static string FC_Id {

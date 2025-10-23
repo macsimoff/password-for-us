@@ -5,6 +5,7 @@ using pw4us.AppConfig.Options;
 using pw4us.Attributes;
 using pw4us.Infrastructure;
 using pw4us.Resources;
+using pw4us.Utils;
 using Spectre.Console;
 using Spectre.Console.Cli;
 
@@ -31,10 +32,10 @@ public class GeneratePassCommand(IPassGenerator generator,
                 settings.Length : options.Value.Length;
             var alphabet = options.Value.Alphabet;
             var password = Markup.Escape(generator.Generate(passLength, alphabet));
-            
-            var icon = AnsiConsole.Profile.Capabilities.Unicode ? "🔑 " : "-> ";
+
+            var icon = ConsoleUtils.GetKeyEmoji();
             AnsiConsole.MarkupLine($"[yellow]{StringsResourse.GPC_GeneratePass}[/]");
-            AnsiConsole.MarkupLine($"{icon}[gray]{password}[/]");
+            AnsiConsole.MarkupLine($"{icon} [gray]{password}[/]");
             return Task.FromResult(0);
         }
         catch (ArgumentException ex)

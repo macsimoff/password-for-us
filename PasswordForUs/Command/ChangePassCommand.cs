@@ -30,7 +30,7 @@ public class ChangePassCommand(
         }
 
         var data = MergeData(list[0]);
-        saveController.ChangePassword(data);
+        saveController.ChangeData(data);
         SynchronizeStorage(appSettings);
         Console.WriteLine(Resources.Resources.ChangePass_PasswordChanged);
     }

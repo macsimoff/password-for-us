@@ -3,7 +3,7 @@ using PasswordForUs.Abstractions.Models;
 
 namespace PasswordForUsLibrary.DataController;
 
-public class SaveDataController
+public class SaveDataController:ISaveDataController
 {
     private IRepository _repository;
 
@@ -12,13 +12,18 @@ public class SaveDataController
         _repository = repo;
     }
 
-    public void AddNewPassword(NodeData model)
+    public void AddNewData(NodeData model)
     {
         _repository.AddNode(model);
     }
     
-    public void ChangePassword(NodeData model)
+    public void ChangeData(NodeData model)
     {
         _repository.ChangeNode(model);
+    }
+    
+    public Task AddNewDataAsync(NodeData model)
+    {
+        return _repository.AddNodeAsync(model);
     }
 }

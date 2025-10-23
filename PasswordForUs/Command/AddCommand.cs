@@ -19,7 +19,7 @@ public class AddCommand(
     public override void Execute(AppSettings appSettings)
     {
         var model = GetModel(appSettings);
-        controller.AddNewPassword(model);
+        controller.AddNewData(model);
         SynchronizeStorage(appSettings);
        Console.WriteLine(Resources.Resources.Add_AddPassword);
     }

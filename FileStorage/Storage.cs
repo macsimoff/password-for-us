@@ -61,4 +61,9 @@ public class Storage(string fileName): IRepository
                         || model.ByName && n.Name == model.Name)
             .Select(ModelConvertor.Convert);
     }
+
+    public Task AddNodeAsync(NodeData model)
+    {
+        return Task.Delay(1000);
+    }
 }

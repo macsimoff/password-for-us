@@ -42,4 +42,7 @@
     <data name="FC_Name" xml:space="preserve">
         <value>name or part of name in the record</value>
     </data>
+    <data name="AddCommand" xml:space="preserve">
+        <value>add a new entry to the storage</value>
+    </data>
 </root>

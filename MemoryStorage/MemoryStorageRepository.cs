@@ -77,6 +77,11 @@ public class MemoryStorageRepository: IRepository
         throw new NotImplementedException();
     }
 
+    public Task AddNodeAsync(PasswordForUs.Abstractions.Models.NodeData model)
+    {
+        throw new NotImplementedException();
+    }
+
     public void SetVersion(Guid version, long ticks)
     {
         Storage.Version = version;
