@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using pw4us.AppConfig;
 using pw4us.Infrastructure;
 using Microsoft.Extensions.Configuration;
+using Spectre.Console;
 
 CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
 CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InvariantCulture;
@@ -29,4 +30,11 @@ app.Configure(cfg =>
     cfg.SetInterceptor(interceptor);
 });
 
-app.Run(args);
+try
+{
+    app.Run(args);
+}
+catch (Exception exe)
+{
+    AnsiConsole.WriteException(exe, ExceptionFormats.ShortenEverything);
+}

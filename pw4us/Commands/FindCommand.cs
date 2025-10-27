@@ -30,19 +30,21 @@ public class FindCommand(
         [LocalizedDescription(nameof(DescriptionResources.FC_Url))]
         public string? Url { get; set; }
 
-        [CommandOption("-n|--name <NAME>")]
+        [CommandArgument(0,"[name]")]
         [LocalizedDescription(nameof(DescriptionResources.FC_Name))]
         public string? Name { get; set; }
+
+        public override ValidationResult Validate()
+        {
+            if(!Id.HasValue && Name == null && Url == null)
+                return ValidationResult.Error("Please specify a search parameter.");
+            return base.Validate();
+        }
     }
 
     public override async Task<int> ExecuteAsync(CommandContext context, Settings settings)
     {
         LogCommandDebugInfo(settings);
-        if(!settings.Id.HasValue && settings.Name == null && settings.Url == null)
-        {
-            AnsiConsole.Markup("Please specify a search parameter.");
-            return -1;
-        }
 
         var spinnerAnimation = GetSpinnerAnimation();
 

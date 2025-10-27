@@ -39,7 +39,6 @@ public abstract class ServiceConfigurator
             )
         );
         
-        services.AddSingleton<LogInterceptor>();
         services.AddSingleton<IRepository,Storage>(n => new Storage("data.json"));
         services.AddTransient<IPassGenerator, PassGenerator>();
         services.AddTransient<ISearchDataController,SearchDataController>();
