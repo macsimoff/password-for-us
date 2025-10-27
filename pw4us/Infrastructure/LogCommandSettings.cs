@@ -9,11 +9,11 @@ namespace pw4us.Infrastructure;
 
 public class LogCommandSettings : CommandSettings
 {
-    [CommandOption("--logFile")]
+    [CommandOption("--logFile", IsHidden = true)]
     [LocalizedDescription(nameof(DescriptionResources.LogSettings_LogFile))]
     public string LogFile { get; set; } = string.Empty;
 
-    [CommandOption("--logLevel")]
+    [CommandOption("--logLevel", IsHidden = true)]
     [LocalizedDescription(nameof(DescriptionResources.LogSettings_LogLevel))]
     [TypeConverter(typeof(VerbosityConverter))]
     public LogEventLevel? LogLevel { get; set; }
