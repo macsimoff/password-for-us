@@ -1,8 +1,8 @@
 ﻿using Spectre.Console;
 
-namespace pw4us.Utils;
+namespace pw4us.Rendering;
 
-public static class ConsoleUtils
+public static class AnsiConsoleHelpers
 {
     public static Spinner GetSpinnerAnimation()
     {

@@ -1,14 +1,16 @@
-﻿using PasswordForUs.Abstractions;
+﻿using Microsoft.Extensions.Options;
+using PasswordForUs.Abstractions;
 using PasswordForUs.Abstractions.Models;
+using pw4us.AppConfig.Options;
 using pw4us.Infrastructure;
-using pw4us.Utils;
+using pw4us.Rendering;
 using Spectre.Console;
 using Spectre.Console.Cli;
 using Spectre.Console.Extensions;
 
 namespace pw4us.Commands;
 
-public class CreateCommand(ISaveDataController controller): AsyncCommand<CreateCommand.Settings>
+public class CreateCommand(ISaveDataController controller, IOptions<ShowSettings> options): AsyncCommand<CreateCommand.Settings>
 {
     public class Settings :LogCommandSettings
     {
@@ -16,23 +18,20 @@ public class CreateCommand(ISaveDataController controller): AsyncCommand<CreateC
 
     public override async Task<int> ExecuteAsync(CommandContext context, Settings settings)
     {
-        var icon = ConsoleUtils.GetFloppyEmoji();
+        var icon = AnsiConsoleHelpers.GetFloppyEmoji();
         AnsiConsole.Markup($"[yellow]{icon} Save new entry :[/] ");
         var node = CreateNode(settings);
-        var spinnerAnimation = ConsoleUtils.GetSpinnerAnimation();
+        var spinnerAnimation = AnsiConsoleHelpers.GetSpinnerAnimation();
         await controller
             .AddNewDataAsync(node)
             .Spinner(
                 spinnerAnimation,
                 new Style(foreground: Color.Blue));
         AnsiConsole.Markup("[green]done[/]");
-        Writer(node);
-        return 0;
-    }
-
-    private void Writer(NodeData node)
-    {
         
+        NodeRenderer.Render("[blue]CREATE RESULT[/]",options.Value, node);
+        
+        return 0;
     }
 
     private NodeData CreateNode(Settings settings)
