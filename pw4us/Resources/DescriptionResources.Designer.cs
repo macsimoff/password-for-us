@@ -60,11 +60,11 @@ namespace pw4us.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to add a new entry to the storage.
+        ///   Looks up a localized string similar to create a new entry to the storage.
         /// </summary>
-        internal static string AddCommand {
+        internal static string CreateCommand {
             get {
-                return ResourceManager.GetString("AddCommand", resourceCulture);
+                return ResourceManager.GetString("CreateCommand", resourceCulture);
             }
         }
         

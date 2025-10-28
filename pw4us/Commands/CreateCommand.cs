@@ -8,7 +8,7 @@ using Spectre.Console.Extensions;
 
 namespace pw4us.Commands;
 
-public class AddCommand(ISaveDataController controller): AsyncCommand<AddCommand.Settings>
+public class CreateCommand(ISaveDataController controller): AsyncCommand<CreateCommand.Settings>
 {
     public class Settings :LogCommandSettings
     {
@@ -17,7 +17,7 @@ public class AddCommand(ISaveDataController controller): AsyncCommand<AddCommand
     public override async Task<int> ExecuteAsync(CommandContext context, Settings settings)
     {
         var icon = ConsoleUtils.GetFloppyEmoji();
-        AnsiConsole.Markup($"[yellow]{icon} Save new data :[/] ");
+        AnsiConsole.Markup($"[yellow]{icon} Save new entry :[/] ");
         var node = CreateNode(settings);
         var spinnerAnimation = ConsoleUtils.GetSpinnerAnimation();
         await controller
@@ -26,7 +26,13 @@ public class AddCommand(ISaveDataController controller): AsyncCommand<AddCommand
                 spinnerAnimation,
                 new Style(foreground: Color.Blue));
         AnsiConsole.Markup("[green]done[/]");
+        Writer(node);
         return 0;
+    }
+
+    private void Writer(NodeData node)
+    {
+        
     }
 
     private NodeData CreateNode(Settings settings)

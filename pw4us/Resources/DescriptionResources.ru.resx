@@ -35,7 +35,7 @@
     <data name="FC_Name" xml:space="preserve">
         <value>имя записи или его часть</value>
     </data>
-    <data name="AddCommand" xml:space="preserve">
-        <value>добавляем новую запись в хранилище</value>
+    <data name="CreateCommand" xml:space="preserve">
+        <value>создаем новую запись в хранилище</value>
     </data>
 </root>

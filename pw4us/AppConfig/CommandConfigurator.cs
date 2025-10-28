@@ -23,8 +23,9 @@ public abstract class CommandConfigurator
             .WithAlias("f")
             .WithDescription(DescriptionResources.FindCommand)
             .WithExample("find", "--name", "gitHub");
-        config.AddCommand<AddCommand>("add")
-            .WithDescription(DescriptionResources.AddCommand)
-            .WithExample(new[] { "add", "--name", "gitHub" });
+        config.AddCommand<CreateCommand>("create")
+            .WithAlias("c")
+            .WithDescription(DescriptionResources.CreateCommand)
+            .WithExample(new[] { "create", "--name", "gitHub" });
     }
 }
