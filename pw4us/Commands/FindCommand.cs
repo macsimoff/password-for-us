@@ -30,11 +30,11 @@ public class FindCommand(
         public string? Url { get; set; }
         
         //todo: Description
-        [CommandOption("-n|--name <name>")]
+        [CommandOption("-n|--name <NAME>")]
         [LocalizedDescription(nameof(DescriptionResources.FC_Url))]
         public string? Name { get; set; }
 
-        [CommandArgument(0,"[text]")]
+        [CommandArgument(0,"[TEXT]")]
         [LocalizedDescription(nameof(DescriptionResources.FC_Name))]
         public string? Text { get; set; }
 
