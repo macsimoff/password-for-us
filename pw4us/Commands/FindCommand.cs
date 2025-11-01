@@ -28,14 +28,19 @@ public class FindCommand(
         [CommandOption("-u|--url <URL>")]
         [LocalizedDescription(nameof(DescriptionResources.FC_Url))]
         public string? Url { get; set; }
-
-        [CommandArgument(0,"[name]")]
-        [LocalizedDescription(nameof(DescriptionResources.FC_Name))]
+        
+        //todo: Description
+        [CommandOption("-n|--name <name>")]
+        [LocalizedDescription(nameof(DescriptionResources.FC_Url))]
         public string? Name { get; set; }
+
+        [CommandArgument(0,"[text]")]
+        [LocalizedDescription(nameof(DescriptionResources.FC_Name))]
+        public string? Text { get; set; }
 
         public override ValidationResult Validate()
         {
-            if(!Id.HasValue && Name == null && Url == null)
+            if(!Id.HasValue && Text == null && Url == null)
                 return ValidationResult.Error("Please specify a search parameter.");
             return base.Validate();
         }
@@ -47,8 +52,10 @@ public class FindCommand(
 
         var spinnerAnimation = AnsiConsoleHelpers.GetSpinnerAnimation();
 
+        var name = string.IsNullOrEmpty(settings.Text)? settings.Name : settings.Text;
+        var url = string.IsNullOrEmpty(settings.Text) ? settings.Url : settings.Text;
         var data = await controller
-            .SearchAsync(new SearchDataModel(settings.Id, settings.Url, settings.Name))
+            .SearchAsync(new SearchDataModel(settings.Id, name, url))
             .Spinner(
                 spinnerAnimation,
                 new Style(foreground: Color.Blue));
@@ -61,7 +68,7 @@ public class FindCommand(
     private void LogCommandDebugInfo(Settings settings)
     {
         logger.LogDebug("Executing FindCommand with Settings -> Id: {Id}, Url: {Url}, Name: {Name}",
-            settings.Id, settings.Url, settings.Name);
+            settings.Id, settings.Url, settings.Text);
         logger.LogDebug("Executing FindCommand with ShowSettings -> " +
                         "All: {All}, Id: {Id}, Name: {Name}, Url: {Url}, Login: {Login}," +
                         "User: {User}, Password: {Password}, AllData: {AllData}, Data: {DataNames}",
