@@ -65,13 +65,38 @@ public static class NodeRenderer
         return new List<ColumnDef>
         {
             new(enabled: show.Id, header: "Key", selector: n => new Markup(n.Id >= 0?n.Id.ToString():"<new>")),
-            new(enabled: show.Name, header: "Name", selector: n => new Markup(n.Name ?? string.Empty)),
-            new(enabled: show.Url, header: "URL", selector: n => new Markup(n.Url ?? string.Empty)),
-            new(enabled: show.Login, header: "Login", selector: n => new Markup(n.Login ?? string.Empty)),
+            new(enabled: show.Name, header: "Name", 
+                selector: n =>
+                {
+                    var name = !string.IsNullOrEmpty(n.Name) ? Markup.Escape(n.Name) : string.Empty;
+                    return new Markup(name);
+                }),
+            new(enabled: show.Url, header: "URL", 
+                selector: n =>
+                {
+                    var url = !string.IsNullOrEmpty(n.Url) ? Markup.Escape(n.Url) : string.Empty;
+                    return new Markup(url);
+                }),
+            new(enabled: show.Login, header: "Login", 
+                selector: n =>
+                {
+                    var login =  !string.IsNullOrEmpty(n.Login) ? Markup.Escape(n.Login) : string.Empty;
+                    return new Markup(login);
+                }),
             new(enabled: show.Password,
                 header: "Password",
-                selector: n => new Markup($"[gray]{n.Password ?? string.Empty}[/]")),
-            new(enabled: show.User, header: "User", selector: n => new Markup(n.User ?? string.Empty)),
+                selector: n =>
+                {
+                    var pass = !string.IsNullOrEmpty(n.Password) ? Markup.Escape(n.Password) : string.Empty;
+                    return new Markup($"[gray]{pass}[/]");
+                }
+                ),
+            new(enabled: show.User, header: "User", 
+                selector: n =>
+                {
+                    var user = !string.IsNullOrEmpty(n.User) ? Markup.Escape(n.User) : string.Empty;
+                    return new Markup(user);
+                }),
             new(enabled: (show.AllData || show.DataNames.Length > 0),
                 header: "",
                 selector: n => GetDataTable(n.Data, show.AllData ? [] : show.DataNames))
@@ -103,7 +128,7 @@ public static class NodeRenderer
                 .ToArray()
             : data.ToArray();
 
-        foreach (var pair in items) grid.AddRow(pair.Key, pair.Value);
+        foreach (var pair in items) grid.AddRow(Markup.Escape(pair.Key), Markup.Escape(pair.Value));
         return grid;
     }
 }
