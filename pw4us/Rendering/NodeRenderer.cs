@@ -64,8 +64,8 @@ public static class NodeRenderer
     {
         return new List<ColumnDef>
         {
-            new(enabled: show.Id, header: "Key", selector: n => new Markup(n.Id.ToString())),
-            new(enabled: show.Name, header: "Name", selector: n => new Markup(n.Title ?? string.Empty)),
+            new(enabled: show.Id, header: "Key", selector: n => new Markup(n.Id >= 0?n.Id.ToString():"<new>")),
+            new(enabled: show.Name, header: "Name", selector: n => new Markup(n.Name ?? string.Empty)),
             new(enabled: show.Url, header: "URL", selector: n => new Markup(n.Url ?? string.Empty)),
             new(enabled: show.Login, header: "Login", selector: n => new Markup(n.Login ?? string.Empty)),
             new(enabled: show.Password,

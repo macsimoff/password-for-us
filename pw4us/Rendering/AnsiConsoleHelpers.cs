@@ -18,4 +18,10 @@ public static class AnsiConsoleHelpers
     {
         return AnsiConsole.Profile.Capabilities.Unicode ? "🔑" : "->";
     }
+
+    public static string GetEditeEmoji()
+    {
+
+        return AnsiConsole.Profile.Capabilities.Unicode ? "✏" : ">>";
+    }
 }
