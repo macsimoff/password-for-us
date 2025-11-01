@@ -1,13 +1,13 @@
 ﻿namespace PasswordForUs.Abstractions.Models;
 
-public class NodeData(Guid guid, long changeTimeTicks, int id, string? user, string? title, string? url, string? login, string? password)
+public class NodeData(Guid guid, long changeTimeTicks, int id, string? user, string? name, string? url, string? login, string? password)
 {
     public Guid Guid { get; set; } = guid;
     public long ChangeTimeTicks { get; set;} = changeTimeTicks;
     public int Id { get; set; } = id;
     public string? User { get;set;} = user;
     public string? Url { get; set;} = url;
-    public string? Title { get; set;} = title;
+    public string? Name { get; set;} = name;
     public string? Login { get; set;} = login;
     public string? Password { get; set;} = password;
     public Dictionary<string, string> Data { get; set;} = new(0);
@@ -16,13 +16,13 @@ public class NodeData(Guid guid, long changeTimeTicks, int id, string? user, str
     {
     }
 
-    public NodeData(string? user, string? title, string? url, string? login, string? password)
-        : this(Guid.NewGuid(), DateTime.Now.Ticks,-1, user, title, url, login, password)
+    public NodeData(string? user, string? name, string? url, string? login, string? password)
+        : this(Guid.NewGuid(), DateTime.Now.Ticks,-1, user, name, url, login, password)
     {
     }
 
-    public NodeData(Guid guid, long changeTimeTicks, int id,string? user, string? url, string? title, string? login, string? password, Dictionary<string, string> data)
-        : this (guid, changeTimeTicks,id, user, title, url, login, password)
+    public NodeData(Guid guid, long changeTimeTicks, int id,string? user, string? url, string? name, string? login, string? password, Dictionary<string, string> data)
+        : this (guid, changeTimeTicks,id, user, name, url, login, password)
     {
         Data = data;
     }
@@ -43,7 +43,7 @@ public class NodeData(Guid guid, long changeTimeTicks, int id, string? user, str
                && Id == other.Id 
                && User == other.User 
                && Url == other.Url 
-               && Title == other.Title 
+               && Name == other.Name 
                && Login == other.Login 
                && Password == other.Password 
                && Data.Equals(other.Data);
@@ -57,7 +57,7 @@ public class NodeData(Guid guid, long changeTimeTicks, int id, string? user, str
         hashCode.Add(Id);
         hashCode.Add(User);
         hashCode.Add(Url);
-        hashCode.Add(Title);
+        hashCode.Add(Name);
         hashCode.Add(Login);
         hashCode.Add(Password);
         foreach (var kvp in Data)

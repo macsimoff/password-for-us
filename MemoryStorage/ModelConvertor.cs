@@ -11,7 +11,7 @@ internal static class ModelConvertor
             node.Id,
             node.User,
             node.Url,
-            node.Title,
+            node.Name,
             node.Login,
             node.Password,
             new Dictionary<string, string>(node.Data)

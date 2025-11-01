@@ -77,7 +77,7 @@ public abstract class Synchronizer(IRepository repo)
             Id = node.Id,
             User = node.User,
             Url = node.Url,
-            Title = node.Title,
+            Name = node.Name,
             Login = node.Login,
             Password = node.Password,
             Data = new Dictionary<string, string>(node.Data)
@@ -97,7 +97,7 @@ public abstract class Synchronizer(IRepository repo)
             Id = node.Id,
             User = node.User,
             Url = node.Url,
-            Title = node.Title,
+            Name = node.Name,
             Login = node.Login,
             Password = node.Password,
             Data = new Dictionary<string, string>(node.Data)
@@ -119,9 +119,9 @@ public abstract class Synchronizer(IRepository repo)
             newNode.Data["User_" + dataNameSuffix] = oldNode.User;
         }
 
-        if (oldNode.Title != null && oldNode.Title != newNode.Title)
+        if (oldNode.Name != null && oldNode.Name != newNode.Name)
         {
-            newNode.Data["Title_"+dataNameSuffix] = oldNode.Title;
+            newNode.Data["Title_"+dataNameSuffix] = oldNode.Name;
         }
 
         if (oldNode.Url != null && oldNode.Url != newNode.Url)

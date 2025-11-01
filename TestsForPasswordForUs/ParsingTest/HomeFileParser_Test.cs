@@ -21,7 +21,7 @@ public class HomeFileStringParserTest
 
         Assert.Multiple(() =>
         {
-            Assert.That( res.Title, Is.EqualTo("elbaadmin"));
+            Assert.That( res.Name, Is.EqualTo("elbaadmin"));
             Assert.That(res.Login, Is.EqualTo("maksimov.o@skbkontur.ru"));
             Assert.That(res.Password, Is.EqualTo("WhatDoesTheFoxSay?"));
         });
@@ -36,7 +36,7 @@ public class HomeFileStringParserTest
 
         Assert.Multiple(() =>
         {
-            Assert.That( res.Title, Is.EqualTo("postgreSQL"));
+            Assert.That( res.Name, Is.EqualTo("postgreSQL"));
             Assert.That(res.Password, Is.EqualTo("pr0st0Pa$$"));
         });
     }
@@ -52,7 +52,7 @@ public class HomeFileStringParserTest
 
         Assert.Multiple(() =>
         {
-            Assert.That( res.Title, Is.EqualTo("Аэроклуб боевой SQLсервер"));
+            Assert.That( res.Name, Is.EqualTo("Аэроклуб боевой SQLсервер"));
             Assert.That( res.Url, Is.EqualTo("mow1db5.aeroclub.int"));
             Assert.That( res.Login, Is.EqualTo("oleg.maksimov"));
             Assert.That(res.Password, Is.EqualTo("Zgvn@9R2h"));
@@ -68,7 +68,7 @@ public class HomeFileStringParserTest
         var res = this._stringParser.CreateNodeData(insertData);
         Assert.Multiple(() =>
         {
-            Assert.That( res.Title, Is.EqualTo("https://app.otta.com/"));
+            Assert.That( res.Name, Is.EqualTo("https://app.otta.com/"));
             Assert.That( res.Url, Is.EqualTo("https://app.otta.com/"));
             Assert.That( res.Login, Is.EqualTo("noleg.macsimoff@gmail.com"));
             Assert.That(res.Password, Is.EqualTo("1a$tpa$$4"));
@@ -84,7 +84,7 @@ public class HomeFileStringParserTest
         var res = this._stringParser.CreateNodeData(insertData);
         Assert.Multiple(() =>
         {
-            Assert.That( res.Title, Is.EqualTo("https://www.reference-my-tenant.com/bin/login.pl?app=1477794"));
+            Assert.That( res.Name, Is.EqualTo("https://www.reference-my-tenant.com/bin/login.pl?app=1477794"));
             Assert.That( res.Url, Is.EqualTo("https://www.reference-my-tenant.com/bin/login.pl?app=1477794"));
             Assert.That( res.Login, Is.EqualTo("oleg.macsimoff@gmail.com"));
             Assert.That(res.Password, Is.EqualTo("m8ezef5g"));
@@ -101,7 +101,7 @@ public class HomeFileStringParserTest
         var res = this._stringParser.CreateNodeData(insertData);
         Assert.Multiple(() =>
         {
-            Assert.That( res.Title, Is.EqualTo("name"));
+            Assert.That( res.Name, Is.EqualTo("name"));
             Assert.That( res.Url, Is.EqualTo("https://www.reference-my-tenant.com/bin/login.pl?app=1477794"));
             Assert.That( res.Login, Is.EqualTo("oleg.macsimoff@gmail.com"));
             Assert.That(res.Password, Is.EqualTo("m8ezef5g"));
@@ -117,7 +117,7 @@ public class HomeFileStringParserTest
         Assert.Multiple(() =>
         {
             Assert.That( res.User, Is.EqualTo("Anna"));
-            Assert.That( res.Title, Is.EqualTo("National Insurance Number (NINO)"));
+            Assert.That( res.Name, Is.EqualTo("National Insurance Number (NINO)"));
             Assert.That(res.Data["data"], Is.EqualTo("SW912292A"));
         });
     }
@@ -134,7 +134,7 @@ public class HomeFileStringParserTest
         Assert.Multiple(() =>
         {
             Assert.That( res.User, Is.EqualTo("Anna"));
-            Assert.That( res.Title, Is.EqualTo("Government Gateway user ID"));
+            Assert.That( res.Name, Is.EqualTo("Government Gateway user ID"));
             Assert.That( res.Url, Is.EqualTo("https://www.tax.service.gov.uk/self-assessment"));
             Assert.That( res.Login, Is.EqualTo("ann.macsimoff@gmail.com"));
             Assert.That(res.Password, Is.EqualTo("m4p#R$0na11d"));
@@ -153,7 +153,7 @@ public class HomeFileStringParserTest
         Assert.Multiple(() =>
         {
             Assert.That( res.User, Is.EqualTo("Anna"));
-            Assert.That( res.Title, Is.EqualTo("https://kino.pub/"));
+            Assert.That( res.Name, Is.EqualTo("https://kino.pub/"));
             Assert.That( res.Url, Is.EqualTo("https://kino.pub/"));
             Assert.That( res.Login, Is.EqualTo("ann.macsimoff@gmail.com"));
             Assert.That(res.Password, Is.EqualTo("AnnBgg131!"));
@@ -172,7 +172,7 @@ public class HomeFileStringParserTest
         var res = this._stringParser.CreateNodeData(insertData);
         Assert.Multiple(() =>
         {
-            Assert.That( res.Title, Is.EqualTo("Wigmore Hall"));
+            Assert.That( res.Name, Is.EqualTo("Wigmore Hall"));
             Assert.That( res.Url, Is.EqualTo("https://wigmore-hall.org.uk/"));
             Assert.That( res.Login, Is.EqualTo("ann.macsimoff@gmail.com"));
             Assert.That(res.Password, Is.EqualTo("AnnBgg123!"));
@@ -189,7 +189,7 @@ public class HomeFileStringParserTest
         var res = this._stringParser.CreateNodeData(insertData);
         Assert.Multiple(() =>
         {
-            Assert.That( res.Title, Is.EqualTo("revolut"));
+            Assert.That( res.Name, Is.EqualTo("revolut"));
             Assert.That(res.Data["pin"], Is.EqualTo("5612"));
             Assert.That(res.Data["pass"], Is.EqualTo("8985"));
         });
@@ -203,7 +203,7 @@ public class HomeFileStringParserTest
         var res = this._stringParser.CreateNodeData(insertData);
         Assert.Multiple(() =>
         {
-            Assert.That( res.Title, Is.EqualTo("https://zp.midpass.ru/"));
+            Assert.That( res.Name, Is.EqualTo("https://zp.midpass.ru/"));
             Assert.That( res.Url, Is.EqualTo("https://zp.midpass.ru/"));
             Assert.That(res.Data["кодовое слово"], Is.EqualTo("git4$ip"));
         });
@@ -223,7 +223,7 @@ public class HomeFileStringParserTest
         var res = this._stringParser.CreateNodeData(insertData);
         Assert.Multiple(() =>
         {
-            Assert.That( res.Title, Is.EqualTo("cigna"));
+            Assert.That( res.Name, Is.EqualTo("cigna"));
             Assert.That( res.Url, Is.EqualTo("https://memberportal.cigna.co.uk/public/login.html"));
             Assert.That( res.Login, Is.EqualTo("ann.macsimoff@gmail.com"));
             Assert.That(res.Password, Is.EqualTo("CiSvat38raT"));

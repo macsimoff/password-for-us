@@ -49,7 +49,7 @@ public class ChangePassCommand(
 
         if (commandData.Title != null)
         {
-            data.Title = commandData.Title;
+            data.Name = commandData.Title;
         }
 
         if (commandData.Login != null)

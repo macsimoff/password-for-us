@@ -33,7 +33,7 @@ public class NodeWriter
         if (show.Id)
             WriteRows(itemsSlice, lineLength, item => $"id >> {item.Id}");
         if (show.Name)
-            WriteRows(itemsSlice, lineLength, item => $"title >> {item.Title}");
+            WriteRows(itemsSlice, lineLength, item => $"title >> {item.Name}");
         if (show.Url)
             WriteRows(itemsSlice, lineLength, item => $"url >> {item.Url}");
         if (show.Login)
@@ -97,7 +97,7 @@ public class NodeWriter
 
         foreach (var node in items)
         {
-            maxLength = Math.Max(maxLength, GetPropertyLength("title", node.Title));
+            maxLength = Math.Max(maxLength, GetPropertyLength("title", node.Name));
             maxLength = Math.Max(maxLength, GetPropertyLength("url", node.Url));
             maxLength = Math.Max(maxLength, GetPropertyLength("login", node.Login));
             maxLength = Math.Max(maxLength, GetPropertyLength("password", node.Password));

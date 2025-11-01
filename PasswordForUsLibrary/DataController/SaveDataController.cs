@@ -22,7 +22,7 @@ public class SaveDataController:ISaveDataController
         _repository.ChangeNode(model);
     }
     
-    public Task AddNewDataAsync(NodeData model)
+    public Task CreateDataAsync(NodeData model)
     {
         return _repository.AddNodeAsync(model);
     }

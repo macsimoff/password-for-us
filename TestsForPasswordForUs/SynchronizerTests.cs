@@ -33,11 +33,11 @@ public class SynchronizerTests
         var time = DateTime.Now;
         var data1 = new SynchronizeData(version, time.Ticks,new List<NodeData>
         {
-            new NodeData {Guid = guid, Id = 1, ChangeTimeTicks = time.Ticks, Title = "Node1" }
+            new NodeData {Guid = guid, Id = 1, ChangeTimeTicks = time.Ticks, Name = "Node1" }
         });
         var data2 = new SynchronizeData(version, time.Ticks, new List<NodeData>
         {
-            new NodeData {Guid = guid, Id = 1, ChangeTimeTicks = time.Ticks, Title = "Node1" }
+            new NodeData {Guid = guid, Id = 1, ChangeTimeTicks = time.Ticks, Name = "Node1" }
         });
         var synchronizer = new TestSynchronizer();
 
@@ -54,7 +54,7 @@ public class SynchronizerTests
         {
             Assert.That(result.Data[0].Guid, Is.EqualTo(guid));
             Assert.That(result.Data[0].Id, Is.EqualTo(1));
-            Assert.That(result.Data[0].Title, Is.EqualTo("Node1"));
+            Assert.That(result.Data[0].Name, Is.EqualTo("Node1"));
         });
     }
 
@@ -66,11 +66,11 @@ public class SynchronizerTests
         var time2 = DateTime.Now.AddDays(1);
         var data1 = new SynchronizeData(Guid.NewGuid(), time.Ticks,new List<NodeData>
         {
-            new NodeData {Guid = Guid.NewGuid(), Id = 1, ChangeTimeTicks = time.Ticks, Title = "Node1" }
+            new NodeData {Guid = Guid.NewGuid(), Id = 1, ChangeTimeTicks = time.Ticks, Name = "Node1" }
         });
         var data2 = new SynchronizeData(Guid.NewGuid(), time2.Ticks,new List<NodeData>
         {
-            new NodeData {Guid = Guid.NewGuid(), Id = 2, ChangeTimeTicks = time2.Ticks, Title = "Node2" }
+            new NodeData {Guid = Guid.NewGuid(), Id = 2, ChangeTimeTicks = time2.Ticks, Name = "Node2" }
         });
         var synchronizer = new TestSynchronizer();
 
@@ -89,9 +89,9 @@ public class SynchronizerTests
         Assert.Multiple(() =>
         {
             Assert.That(result.Data[0].Id, Is.EqualTo(1));
-            Assert.That(result.Data[0].Title, Is.EqualTo("Node1"));
+            Assert.That(result.Data[0].Name, Is.EqualTo("Node1"));
             Assert.That(result.Data[1].Id, Is.EqualTo(2));
-            Assert.That(result.Data[1].Title, Is.EqualTo("Node2"));
+            Assert.That(result.Data[1].Name, Is.EqualTo("Node2"));
         });
     }
 
@@ -106,12 +106,12 @@ public class SynchronizerTests
         var time2 = DateTime.Now.AddDays(-1);
         var data1 = new SynchronizeData(version1, time.Ticks, new List<NodeData>
         {
-            new NodeData { Guid = guid1, Id = 1, ChangeTimeTicks = time2.Ticks, Title = "Node1" },
-            new NodeData {Guid = Guid.NewGuid(), Id = 2, ChangeTimeTicks = time.Ticks, Title = "Node2" }
+            new NodeData { Guid = guid1, Id = 1, ChangeTimeTicks = time2.Ticks, Name = "Node1" },
+            new NodeData {Guid = Guid.NewGuid(), Id = 2, ChangeTimeTicks = time.Ticks, Name = "Node2" }
         });
         var data2 = new SynchronizeData(version2, time2.Ticks, new List<NodeData>
         {
-            new NodeData { Guid = guid1, Id = 1, ChangeTimeTicks = time2.Ticks, Title = "Node1" }
+            new NodeData { Guid = guid1, Id = 1, ChangeTimeTicks = time2.Ticks, Name = "Node1" }
         });
         var synchronizer = new TestSynchronizer();
 
@@ -128,9 +128,9 @@ public class SynchronizerTests
         {
             Assert.That(result.Data[0].Guid, Is.EqualTo(guid1));
             Assert.That(result.Data[0].Id, Is.EqualTo(1));
-            Assert.That(result.Data[0].Title, Is.EqualTo("Node1"));
+            Assert.That(result.Data[0].Name, Is.EqualTo("Node1"));
             Assert.That(result.Data[1].Id, Is.EqualTo(2));
-            Assert.That(result.Data[1].Title, Is.EqualTo("Node2"));
+            Assert.That(result.Data[1].Name, Is.EqualTo("Node2"));
         });
     }
 
@@ -145,12 +145,12 @@ public class SynchronizerTests
         var time2 = DateTime.Now;
         var data1 = new SynchronizeData(version1,  time.Ticks,new List<NodeData>
         {
-            new NodeData { Guid = guid1, Id = 1, ChangeTimeTicks = time.Ticks,Title = "Node1" }
+            new NodeData { Guid = guid1, Id = 1, ChangeTimeTicks = time.Ticks,Name = "Node1" }
         });
         var data2 = new SynchronizeData(version2,  time2.Ticks,new List<NodeData>
         {
-            new NodeData { Guid = guid1, Id = 1,  ChangeTimeTicks = time.Ticks, Title = "Node1" },
-            new NodeData {Guid = Guid.NewGuid(), Id = 2,  ChangeTimeTicks = time2.Ticks, Title = "Node2" }
+            new NodeData { Guid = guid1, Id = 1,  ChangeTimeTicks = time.Ticks, Name = "Node1" },
+            new NodeData {Guid = Guid.NewGuid(), Id = 2,  ChangeTimeTicks = time2.Ticks, Name = "Node2" }
         });
         var synchronizer = new TestSynchronizer();
 
@@ -167,9 +167,9 @@ public class SynchronizerTests
         {
             Assert.That(result.Data[0].Guid, Is.EqualTo(guid1));
             Assert.That(result.Data[0].Id, Is.EqualTo(1));
-            Assert.That(result.Data[0].Title, Is.EqualTo("Node1"));
+            Assert.That(result.Data[0].Name, Is.EqualTo("Node1"));
             Assert.That(result.Data[1].Id, Is.EqualTo(2));
-            Assert.That(result.Data[1].Title, Is.EqualTo("Node2"));
+            Assert.That(result.Data[1].Name, Is.EqualTo("Node2"));
         });
     }
 
@@ -184,11 +184,11 @@ public class SynchronizerTests
         var oldTime = time.AddDays(-1);
         var data1 = new SynchronizeData(version1, time.Ticks, new List<NodeData>
         {
-            new NodeData {Guid = guid1, ChangeTimeTicks = time.Ticks, Id = 1, Title = "Node1", Login = "newLogin"}
+            new NodeData {Guid = guid1, ChangeTimeTicks = time.Ticks, Id = 1, Name = "Node1", Login = "newLogin"}
         });
         var data2 = new SynchronizeData(version2,  oldTime.Ticks,new List<NodeData>
         {
-            new NodeData {Guid = guid1, ChangeTimeTicks = oldTime.Ticks, Id = 1, Title = "Node1", Login = "oldLogin" }
+            new NodeData {Guid = guid1, ChangeTimeTicks = oldTime.Ticks, Id = 1, Name = "Node1", Login = "oldLogin" }
         });
         var synchronizer = new TestSynchronizer();
 
@@ -206,7 +206,7 @@ public class SynchronizerTests
             Assert.That(result.Data[0].Guid, Is.EqualTo(guid1));
             Assert.That(result.Data[0].Id, Is.EqualTo(1));
             Assert.That(result.Data[0].ChangeTimeTicks, Is.EqualTo(time.Ticks));
-            Assert.That(result.Data[0].Title, Is.EqualTo("Node1"));
+            Assert.That(result.Data[0].Name, Is.EqualTo("Node1"));
             Assert.That(result.Data[0].Login, Is.EqualTo("newLogin"));
             Assert.That(result.Data[0].Data["Login_"+oldTime.ToShortDateString()+"_"+oldTime.Ticks],Is.EqualTo("oldLogin"));
         });
@@ -223,11 +223,11 @@ public class SynchronizerTests
         var oldTime = time.AddDays(-1);
         var data1 = new SynchronizeData(version1,  oldTime.Ticks,new List<NodeData>
         {
-            new() { Guid = guid1, ChangeTimeTicks = oldTime.Ticks, Id = 1, Title = "Node1", Login = "oldLogin"}
+            new() { Guid = guid1, ChangeTimeTicks = oldTime.Ticks, Id = 1, Name = "Node1", Login = "oldLogin"}
         });
         var data2 = new SynchronizeData(version2, time.Ticks,new List<NodeData>
         {
-            new() { Guid = guid1, ChangeTimeTicks = time.Ticks, Id = 1, Title = "Node1", Login = "newLogin"}
+            new() { Guid = guid1, ChangeTimeTicks = time.Ticks, Id = 1, Name = "Node1", Login = "newLogin"}
         });
         var synchronizer = new TestSynchronizer();
 
@@ -245,7 +245,7 @@ public class SynchronizerTests
             Assert.That(result.Data[0].Guid, Is.EqualTo(guid1));
             Assert.That(result.Data[0].Id, Is.EqualTo(1));
             Assert.That(result.Data[0].ChangeTimeTicks, Is.EqualTo(time.Ticks));
-            Assert.That(result.Data[0].Title, Is.EqualTo("Node1"));
+            Assert.That(result.Data[0].Name, Is.EqualTo("Node1"));
             Assert.That(result.Data[0].Login, Is.EqualTo("newLogin"));
             Assert.That(result.Data[0].Data["Login_"+oldTime.ToShortDateString()+"_"+oldTime.Ticks],Is.EqualTo("oldLogin"));
         });
@@ -261,11 +261,11 @@ public class SynchronizerTests
         var time = DateTime.Now;
         var data1 = new SynchronizeData(version1, time.Ticks,new List<NodeData>
         {
-            new() {Guid = guid1, ChangeTimeTicks = time.Ticks, Id = 1, Title = "Node1", Login = "newLogin1"}
+            new() {Guid = guid1, ChangeTimeTicks = time.Ticks, Id = 1, Name = "Node1", Login = "newLogin1"}
         });
         var data2 = new SynchronizeData(version2, time.Ticks,new List<NodeData>
         {
-            new() {Guid = guid1, ChangeTimeTicks = time.Ticks, Id = 1, Title = "Node1", Login = "newLogin2"}
+            new() {Guid = guid1, ChangeTimeTicks = time.Ticks, Id = 1, Name = "Node1", Login = "newLogin2"}
         });
         var synchronizer = new TestSynchronizer();
 
@@ -285,7 +285,7 @@ public class SynchronizerTests
             Assert.That(result.Data[0].Guid, Is.EqualTo(guid1));
             Assert.That(result.Data[0].ChangeTimeTicks, Is.EqualTo(time.Ticks));
             Assert.That(result.Data[0].Id, Is.EqualTo(1));
-            Assert.That(result.Data[0].Title, Is.EqualTo("Node1"));
+            Assert.That(result.Data[0].Name, Is.EqualTo("Node1"));
             Assert.That(result.Data[0].Login, Is.EqualTo("newLogin1"));
             Assert.That(result.Data[0].Data["Login_"+time.ToShortDateString()+"_"+time.Ticks],Is.EqualTo("newLogin2"));
         });
@@ -301,11 +301,11 @@ public class SynchronizerTests
         var time = DateTime.Now;
         var data1 = new SynchronizeData(version1, time.Ticks,new List<NodeData>
         {
-            new() { Guid = guid1, ChangeTimeTicks = time.Ticks, Id = 1, Title = "newName", Login = "Login"}
+            new() { Guid = guid1, ChangeTimeTicks = time.Ticks, Id = 1, Name = "newName", Login = "Login"}
         });
         var data2 = new SynchronizeData(version2, time.Ticks,new List<NodeData>
         {
-            new() { Guid = guid1,  ChangeTimeTicks = time.Ticks, Id = 1, Title = "Name", Login = "newLogin"}
+            new() { Guid = guid1,  ChangeTimeTicks = time.Ticks, Id = 1, Name = "Name", Login = "newLogin"}
         });
         var synchronizer = new TestSynchronizer();
 
@@ -325,7 +325,7 @@ public class SynchronizerTests
             Assert.That(result.Data[0].ChangeTimeTicks, Is.EqualTo(time.Ticks));
             Assert.That(result.Data[0].Id, Is.EqualTo(1));
             
-            Assert.That(result.Data[0].Title, Is.EqualTo("newName"));
+            Assert.That(result.Data[0].Name, Is.EqualTo("newName"));
             Assert.That(result.Data[0].Login, Is.EqualTo("Login"));
             Assert.That(result.Data[0].Data["Title_"+time.ToShortDateString()+"_"+time.Ticks],Is.EqualTo("Name"));
             Assert.That(result.Data[0].Data["Login_"+time.ToShortDateString()+"_"+time.Ticks],Is.EqualTo("newLogin"));

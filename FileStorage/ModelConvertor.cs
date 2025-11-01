@@ -10,7 +10,7 @@ public abstract class ModelConvertor
         {
             Guid = node.Guid,
             Id = node.Id,
-            Title = node.Name,
+            Name = node.Name,
             Url = node.Url,
             User = node.User,
             ChangeTimeTicks = node.ChangeTimeTicks,
