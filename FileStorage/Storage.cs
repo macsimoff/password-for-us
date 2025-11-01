@@ -4,9 +4,18 @@ using PasswordForUs.Abstractions.Models;
 
 namespace FileStorage;
 
-public class Storage(string fileName): IRepository
+public class Storage: IRepository
 {
-    private readonly IFileReader _reader = new JsonFileReader(fileName);
+    
+    private readonly IFileReader _reader;
+    private readonly IWriter _writer ;
+
+    public Storage(string fileName)
+    {
+        var readerWriter = new JsonFileReaderWriter(fileName);
+        _reader = readerWriter;
+        _writer = readerWriter;
+    }
     public void AddNode(NodeData node)
     {
         throw new NotImplementedException();
@@ -62,8 +71,11 @@ public class Storage(string fileName): IRepository
             .Select(ModelConvertor.Convert);
     }
 
-    public Task AddNodeAsync(NodeData model)
+    public async Task AddNodeAsync(NodeData model)
     {
-        return Task.Delay(1000);
+        var data = await _reader.ReadFileAsync();
+        model.Id = data.Nodes.Count();
+        data.Nodes.Add(ModelConvertor.Create(model));
+        await _writer.Write(data);
     }
 }

@@ -14,6 +14,21 @@ public abstract class ModelConvertor
             Url = node.Url,
             User = node.User,
             ChangeTimeTicks = node.ChangeTimeTicks,
+            Data = node.Data
+        };
+    }
+
+    public static Node Create(NodeData model)
+    {
+        return new Node()
+        {
+            Guid = model.Guid,
+            Id = model.Id,
+            Name = model.Name??string.Empty,
+            Url = model.Url??string.Empty,
+            User = model.User,
+            ChangeTimeTicks = model.ChangeTimeTicks,
+            Data = model.Data
         };
     }
 }

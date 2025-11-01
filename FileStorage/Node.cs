@@ -8,4 +8,5 @@ public class Node
     public string Name { get; set; }
     public string? User { get; set; }
     public long ChangeTimeTicks { get; set; }
+    public Dictionary<string,string> Data { get; set; }
 }

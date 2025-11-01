@@ -2,5 +2,5 @@
 
 public class Data
 {
-    public IEnumerable<Node> Nodes { get; set; }
+    public List<Node> Nodes { get; set; }
 }
