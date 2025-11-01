@@ -8,6 +8,9 @@
       "!@#$%^&*_+{}[]|\\:;\"'<>?/~`()_-+="
     ]
   },
+  "User":{
+    "UserName": "User"
+  },
   "Show": {
     "Id": true,
     "Name": true,

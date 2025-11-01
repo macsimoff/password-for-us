@@ -24,6 +24,9 @@ public abstract class ServiceConfigurator
         services.AddOptions<ShowSettings>()
             .BindConfiguration("Show")
             .ValidateOnStart();
+        services.AddOptions<UserSettings>()
+            .BindConfiguration("User")
+            .ValidateOnStart();
 
         services.AddLogging(configure =>
             configure.AddSerilog(new LoggerConfiguration()

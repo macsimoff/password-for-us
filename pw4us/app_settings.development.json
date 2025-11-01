@@ -2,6 +2,9 @@
   "GeneratePass": {
     "Length": 20
   },
+  "User" : {
+    "UserName": "UserName"
+  },
   "Show": {
     "All": true
   },
