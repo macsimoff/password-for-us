@@ -12,10 +12,14 @@
     "UserName": "User"
   },
   "Show": {
+    "All": false,
     "Id": true,
     "Name": true,
     "Url": true,
-    "Login": true
+    "Login": true,
+    "Password": false,
+    "AllData": false,
+    "DataNames": []
   },
   "Serilog": {
     "MinimumLevel": {
