@@ -5,19 +5,10 @@ using PasswordForUs.Abstractions.Models;
 
 namespace FileStorage;
 
-public class Storage: IRepository,IDisposable
+public class Storage(string fileName) : IRepository, IDisposable
 {
-    
-    private readonly IFileReader _reader;
-    private readonly IWriter _writer ;
-    private readonly JsonFileStore _fileStore;
+    private readonly JsonFileStore _fileStore = new(fileName);
 
-    public Storage(string fileName)
-    {
-        _fileStore = new JsonFileStore(fileName);
-        _reader = _fileStore;
-        _writer = _fileStore;
-    }
     public void AddNode(NodeData node)
     {
         throw new NotImplementedException();
@@ -66,7 +57,7 @@ public class Storage: IRepository,IDisposable
     public async Task<IEnumerable<EncryptedData>> FindNodeAsync(SearchDataModel model)
     {
         
-        var data = await _reader.ReadFileAsync();
+        var data = await _fileStore.ReadFileAsync();
         return data.Nodes.Where(n => model.ById && n.Id == model.Id
                         || model.ByUrl && n.Url.Contains(model.Url)
                         || model.ByName && n.Name.Contains(model.Name))
@@ -75,10 +66,10 @@ public class Storage: IRepository,IDisposable
 
     public async Task AddNodeAsync(EncryptedData model)
     {
-        var data = await _reader.ReadFileAsync();
+        var data = await _fileStore.ReadFileAsync();
         model.Id = data.Nodes.Count();
         data.Nodes.Add(ModelConvertor.Create(model));
-        await _writer.Write(data);
+        await _fileStore.Write(data);
     }
 
     public void Dispose()
