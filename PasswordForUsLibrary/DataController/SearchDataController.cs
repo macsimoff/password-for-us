@@ -10,7 +10,7 @@ public class SearchDataController(IRepository repository) : ISearchDataControlle
         return repository.FindNode(searchModel);
     }
 
-    public Task<IEnumerable<NodeData>> SearchAsync(SearchDataModel searchModel)
+    public Task<IEnumerable<EncryptedData>> SearchAsync(SearchDataModel searchModel)
     {
         return repository.FindNodeAsync(searchModel);
     }

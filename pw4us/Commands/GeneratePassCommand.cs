@@ -4,6 +4,7 @@ using PasswordForUs.Abstractions;
 using pw4us.AppConfig.Options;
 using pw4us.Attributes;
 using pw4us.Infrastructure;
+using pw4us.Infrastructure.Settings;
 using pw4us.Rendering;
 using pw4us.Resources;
 using Spectre.Console;

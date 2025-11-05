@@ -1,11 +1,14 @@
-﻿using FileStorage;
+﻿using Encryption.Aes;
+using FileStorage;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using PasswordForUs.Abstractions;
 using PasswordForUsLibrary.DataController;
 using PasswordForUsLibrary.PassGenerator;
+using PasswordHashing;
 using pw4us.AppConfig.Options;
 using pw4us.Infrastructure;
+using pw4us.Infrastructure.Interceptor;
 using Serilog;
 
 namespace pw4us.AppConfig;
@@ -43,6 +46,8 @@ public abstract class ServiceConfigurator
         );
         
         services.AddSingleton<IRepository,Storage>(n => new Storage("data.json"));
+        services.AddTransient<IEncryptionService,AesEncryptionService>();
+        services.AddTransient<IPasswordHashing,Pbkdf2Hashing>();
         services.AddTransient<IPassGenerator, PassGenerator>();
         services.AddTransient<ISearchDataController,SearchDataController>();
         services.AddTransient<ISaveDataController,SaveDataController>();

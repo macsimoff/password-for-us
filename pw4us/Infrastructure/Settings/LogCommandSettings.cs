@@ -5,7 +5,7 @@ using pw4us.Resources;
 using Serilog.Events;
 using Spectre.Console.Cli;
 
-namespace pw4us.Infrastructure;
+namespace pw4us.Infrastructure.Settings;
 
 public class LogCommandSettings : CommandSettings
 {

@@ -4,5 +4,5 @@ namespace PasswordForUs.Abstractions;
 
 public interface ISaveDataController
 {
-    Task CreateDataAsync(NodeData model);
+    Task CreateDataAsync(EncryptedData model);
 }

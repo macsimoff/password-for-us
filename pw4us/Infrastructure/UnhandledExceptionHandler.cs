@@ -1,7 +1,7 @@
-﻿using Spectre.Console;
+﻿using System.Security.Cryptography;
+using Spectre.Console;
 using Spectre.Console.Cli;
 using Microsoft.Extensions.Logging;
-using pw4us.Resources;
 
 namespace pw4us.Infrastructure;
 
@@ -16,6 +16,10 @@ public sealed class UnhandledExceptionHandler
             logger.LogError(exception, "An unexpected error occurred. Message: {Message}",exception.Message);
         }
 
+        if (exception is AuthenticationTagMismatchException)
+        {
+            AnsiConsole.MarkupLine($"[red]Wrong password.[/]");
+        }
         return -1;
     }
 }

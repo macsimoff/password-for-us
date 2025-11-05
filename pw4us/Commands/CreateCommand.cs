@@ -5,6 +5,7 @@ using PasswordForUs.Abstractions.Models;
 using pw4us.AppConfig.Options;
 using pw4us.Attributes;
 using pw4us.Infrastructure;
+using pw4us.Infrastructure.Settings;
 using pw4us.Rendering;
 using pw4us.Resources;
 using Spectre.Console;
@@ -18,10 +19,11 @@ public class CreateCommand(
     IOptions<ShowSettings> showSettings,
     IOptions<UserSettings> userSettings,
     IOptions<GeneratePassSettings> generatePassSettings,
+    IEncryptionService encryption,
     ISaveDataController controller,
     IPassGenerator generator): AsyncCommand<CreateCommand.Settings>
 {
-    public class Settings :LogCommandSettings
+    public class Settings :PassCommandSettings
     {
         //todo: Description
         [CommandArgument(0,"[URL]")]
@@ -39,7 +41,7 @@ public class CreateCommand(
         public string? Login { get; set; }
 
         //todo: Description
-        [CommandOption("-p|--pas <PASSWORD>")]
+        [CommandOption("--pas <PASSWORD>")]
         [LocalizedDescription(nameof(DescriptionResources.FC_Id))]
         public string? Password { get; set; }
 
@@ -72,13 +74,14 @@ public class CreateCommand(
         LogSettings(settings);
 
         var node = await CreateNode(settings);
+        var data = encryption.Encrypt(settings.PassBytes, node);
 
         var icon = AnsiConsoleHelpers.GetFloppyEmoji();
         AnsiConsole.Markup($"[yellow]{icon} Save new entry :[/] ");
         var spinnerAnimation = AnsiConsoleHelpers.GetSpinnerAnimation();
         
         await controller
-            .CreateDataAsync(node)
+            .CreateDataAsync(data)
             .Spinner(
                 spinnerAnimation,
                 new Style(foreground: Color.Blue));

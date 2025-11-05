@@ -1,9 +1,11 @@
 ﻿using System.Globalization;
+using System.Security.Cryptography;
 using Spectre.Console.Cli;
 using Microsoft.Extensions.DependencyInjection;
 using pw4us.AppConfig;
 using pw4us.Infrastructure;
 using Microsoft.Extensions.Configuration;
+using pw4us.Infrastructure.Interceptor;
 using Spectre.Console;
 
 CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
@@ -26,13 +28,19 @@ var app = new CommandApp(new MSDITypeRegistrar(services));
 app.Configure(cfg =>
 {
     CommandConfigurator.Configure(cfg);
-    var interceptor = new LogInterceptor(configuration);
-    cfg.SetInterceptor(interceptor);
+    var logInterceptor = new LogInterceptor(configuration);
+    var passInterceptor = new PasswordInterceptor();
+    cfg.SetInterceptor(logInterceptor);
+    cfg.SetInterceptor(passInterceptor);
 });
 
 try
 {
     app.Run(args);
+}
+catch (AuthenticationTagMismatchException e)
+{
+    AnsiConsole.MarkupLine($"[red]Wrong password...[/]");
 }
 catch (Exception exe)
 {

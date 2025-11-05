@@ -53,9 +53,11 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Encryption\Encryption.csproj" />
       <ProjectReference Include="..\FileStorage\FileStorage.csproj" />
       <ProjectReference Include="..\PasswordForUs.Abstractions\PasswordForUs.Abstractions.csproj" />
       <ProjectReference Include="..\PasswordForUsLibrary\PasswordForUsLibrary.csproj" />
+      <ProjectReference Include="..\PasswordHashing\PasswordHashing.csproj" />
     </ItemGroup>
 
     <ItemGroup>

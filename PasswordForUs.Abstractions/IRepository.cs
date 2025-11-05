@@ -14,6 +14,6 @@ public interface IRepository
     void SetVersion(Guid version, long ticks);
     long GetStorageDataChangeTime();
 
-    Task<IEnumerable<NodeData>> FindNodeAsync(SearchDataModel node);
-    Task AddNodeAsync(NodeData model);
+    Task<IEnumerable<EncryptedData>> FindNodeAsync(SearchDataModel node);
+    Task AddNodeAsync(EncryptedData model);
 }

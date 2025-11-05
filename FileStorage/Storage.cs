@@ -1,20 +1,22 @@
 ﻿using FileStorage.FileReaders;
+using FileStorage.WritersReaders;
 using PasswordForUs.Abstractions;
 using PasswordForUs.Abstractions.Models;
 
 namespace FileStorage;
 
-public class Storage: IRepository
+public class Storage: IRepository,IDisposable
 {
     
     private readonly IFileReader _reader;
     private readonly IWriter _writer ;
+    private readonly JsonFileStore _fileStore;
 
     public Storage(string fileName)
     {
-        var readerWriter = new JsonFileReaderWriter(fileName);
-        _reader = readerWriter;
-        _writer = readerWriter;
+        _fileStore = new JsonFileStore(fileName);
+        _reader = _fileStore;
+        _writer = _fileStore;
     }
     public void AddNode(NodeData node)
     {
@@ -61,21 +63,26 @@ public class Storage: IRepository
         throw new NotImplementedException();
     }
 
-    public async Task<IEnumerable<NodeData>> FindNodeAsync(SearchDataModel model)
+    public async Task<IEnumerable<EncryptedData>> FindNodeAsync(SearchDataModel model)
     {
         
         var data = await _reader.ReadFileAsync();
         return data.Nodes.Where(n => model.ById && n.Id == model.Id
-                        || model.ByUrl && n.Url == model.Url
-                        || model.ByName && n.Name == model.Name)
+                        || model.ByUrl && n.Url.Contains(model.Url)
+                        || model.ByName && n.Name.Contains(model.Name))
             .Select(ModelConvertor.Convert);
     }
 
-    public async Task AddNodeAsync(NodeData model)
+    public async Task AddNodeAsync(EncryptedData model)
     {
         var data = await _reader.ReadFileAsync();
         model.Id = data.Nodes.Count();
         data.Nodes.Add(ModelConvertor.Create(model));
         await _writer.Write(data);
+    }
+
+    public void Dispose()
+    {
+        _fileStore.Dispose();
     }
 }

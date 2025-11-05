@@ -4,7 +4,7 @@ using PasswordForUs.Abstractions;
 using PasswordForUs.Abstractions.Models;
 using pw4us.AppConfig.Options;
 using pw4us.Attributes;
-using pw4us.Infrastructure;
+using pw4us.Infrastructure.Settings;
 using pw4us.Rendering;
 using pw4us.Resources;
 using Spectre.Console;
@@ -16,10 +16,11 @@ namespace pw4us.Commands;
 public class FindCommand(
     ILogger<FindCommand> logger,
     IOptions<ShowSettings> options,
+    IEncryptionService encryption,
     ISearchDataController controller) : AsyncCommand<FindCommand.Settings>
 {
 
-    public class Settings : LogCommandSettings
+    public class Settings : PassCommandSettings
     {
         [CommandOption("-i|--id <ID>")]
         [LocalizedDescription(nameof(DescriptionResources.FC_Id))]
@@ -60,7 +61,7 @@ public class FindCommand(
                 spinnerAnimation,
                 new Style(foreground: Color.Blue));
 
-        DrawTable(data);
+        DrawTable(data.Select(x =>  encryption.Decrypt(settings.PassBytes, x)));
 
         return 0;
     }

@@ -72,7 +72,12 @@ public class MemoryStorageRepository: IRepository
         return Storage.ChangeTimeTicks;
     }
 
-    public Task<IEnumerable<PasswordForUs.Abstractions.Models.NodeData>> FindNodeAsync(SearchDataModel node)
+    public Task<IEnumerable<PasswordForUs.Abstractions.Models.EncryptedData>> FindNodeAsync(SearchDataModel node)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task AddNodeAsync(EncryptedData model)
     {
         throw new NotImplementedException();
     }

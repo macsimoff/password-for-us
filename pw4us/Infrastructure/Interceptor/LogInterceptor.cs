@@ -1,9 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
+using pw4us.Infrastructure.Settings;
 using Serilog.Core;
 using Serilog.Events;
 using Spectre.Console.Cli;
 
-namespace pw4us.Infrastructure;
+namespace pw4us.Infrastructure.Interceptor;
 
 public class LogInterceptor : ICommandInterceptor
 {
