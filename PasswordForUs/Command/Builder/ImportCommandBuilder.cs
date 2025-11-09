@@ -39,10 +39,10 @@ public class ImportCommandBuilder(IRepositoryFactory repoFactory, ISynchronizerF
     {
         return extension switch
         {
-            ".txt" => new HomeFileParser(new HomeFileReader(), new HomeFileStringParser()),
+            ".txt" => new HomeFileParser(new LineFileReader(), new HomeFileStringParser()),
             ".json" => new JsonFileParser(),
-            ".csv" => new CsvFileParser(new HomeFileReader(), new GoogleCsvStringParser()),
-            _ => new HomeFileParser(new HomeFileReader(), new HomeFileStringParser())
+            ".csv" => new CsvFileParser(new LineFileReader(), new GoogleCsvStringParser()),
+            _ => new HomeFileParser(new LineFileReader(), new HomeFileStringParser())
         };
     }
 }

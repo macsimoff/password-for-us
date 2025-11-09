@@ -3,7 +3,7 @@ using PasswordForUsLibrary.Import.StringParser;
 
 namespace PasswordForUsLibrary.Import.FileReader;
 
-public class HomeFileReader : IFileReader
+public class LineFileReader : IFileReader
 {
     public IEnumerable<string> Read(StreamReader reader)
     {
