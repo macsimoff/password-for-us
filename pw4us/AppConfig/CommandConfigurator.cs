@@ -27,5 +27,10 @@ public abstract class CommandConfigurator
             .WithAlias("c")
             .WithDescription(DescriptionResources.CreateCommand)
             .WithExample(new[] { "create", "--name", "gitHub" });
+        config.AddCommand<ImportCommand>("import")
+            .WithAlias("i")
+            .WithDescription("Import entries from file (txt/json/csv)")
+            .WithExample(new[] { "import", "secrets.json" })
+            .WithExample(new[] { "import", "export.txt", "--format", "json" });
     }
 }

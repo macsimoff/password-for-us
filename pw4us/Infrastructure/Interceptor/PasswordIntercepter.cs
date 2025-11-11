@@ -9,14 +9,11 @@ public class PasswordInterceptor : ICommandInterceptor
 {
     public void Intercept(CommandContext context, CommandSettings settings)
     {
-        if (settings is PassCommandSettings passSettings)
-        {
-            if (string.IsNullOrEmpty(passSettings.Pass))
-            {
-                var keyEmoji = AnsiConsoleHelpers.GetKeyEmoji();
-                passSettings.Pass = AnsiConsole.Prompt(
-                    new TextPrompt<string>($"{keyEmoji} Enter the PASSWORD : ").Secret());
-            }
-        }
+        if (settings is not PassCommandSettings passSettings) return;
+        if (!string.IsNullOrEmpty(passSettings.Pass)) return;
+        
+        var keyEmoji = AnsiConsoleHelpers.GetKeyEmoji();
+        passSettings.Pass = AnsiConsole.Prompt(
+            new TextPrompt<string>($"{keyEmoji} Enter the PASSWORD : ").Secret());
     }
 }

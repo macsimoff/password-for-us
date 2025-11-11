@@ -34,8 +34,7 @@ public class FindCommand: ICommand
         }
         catch (InvalidOperationException e)
         {
-            Console.WriteLine(e.Message 
-                              + Resources.Resources.OpenFilePrompt);
+            Console.WriteLine(e.Message + Resources.Resources.OpenFilePrompt);
             return;            
         }
 

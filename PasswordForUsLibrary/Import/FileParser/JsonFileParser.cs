@@ -3,11 +3,11 @@ using PasswordForUs.Abstractions.Models;
 
 namespace PasswordForUsLibrary.Import.FileParser;
 
-public class JsonFileParser:IFileParser
+public class JsonFileParser : IFileParser
 {
-    public IEnumerable<NodeData> ParseNodes(StreamReader streamReader)
+    public async IAsyncEnumerable<NodeData> ParseNodesAsync(StreamReader streamReader)
     {
-        var jsonString = streamReader.ReadToEnd();
+        var jsonString = await streamReader.ReadToEndAsync();
         var data = JsonSerializer.Deserialize<List<NodeData>>(jsonString);
         data ??= [];
         foreach (var node in data)
@@ -16,7 +16,7 @@ public class JsonFileParser:IFileParser
                 node.Guid = Guid.NewGuid();
             if (node.ChangeTimeTicks == 0)
                 node.ChangeTimeTicks = DateTime.Now.Ticks;
+            yield return node;
         }
-        return data;
     }
 }

@@ -5,13 +5,18 @@ namespace PasswordForUsLibrary.Import.FileParser;
 
 public class CsvFileParser(IFileReader fileReader, GoogleCsvStringParser stringParser): IFileParser
 {
-    public IEnumerable<NodeData> ParseNodes(StreamReader streamReader)
+    public async IAsyncEnumerable<NodeData> ParseNodesAsync(StreamReader streamReader)
     {
-        var lines = fileReader.Read(streamReader)
-            .Skip(1)                                   // Skip header line
-            .Where(l => !string.IsNullOrWhiteSpace(l));
-
-        foreach (var line in lines)
+        var first = true;
+        await foreach (var line in fileReader.ReadAsync(streamReader))
+        {
+            if (first)
+            {
+                first = false; // Skip header line
+                continue;
+            }
+            
             yield return stringParser.CreateNodeData(line);
+        }
     }
 }

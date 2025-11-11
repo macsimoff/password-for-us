@@ -86,7 +86,7 @@ public class CreateCommand(
                 spinnerAnimation,
                 new Style(foreground: Color.Blue));
         
-        AnsiConsole.Markup("[green]done[/]");
+        AnsiConsole.MarkupLine("[green]done[/]");
         
         NodeRenderer.Render("[blue]CREATE RESULT[/]",showSettings.Value, node);
         

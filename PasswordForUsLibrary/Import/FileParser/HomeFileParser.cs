@@ -6,10 +6,11 @@ namespace PasswordForUsLibrary.Import.FileParser;
 
 public class HomeFileParser(IFileReader fileReader, IStringParser stringParser) : IFileParser
 {
-    public IEnumerable<NodeData> ParseNodes(StreamReader streamReader)
+    public async IAsyncEnumerable<NodeData> ParseNodesAsync(StreamReader streamReader)
     {
-        return fileReader.Read(streamReader)
-            .Where(l => !string.IsNullOrWhiteSpace(l))
-            .Select(stringParser.CreateNodeData);
+        await foreach (var line in fileReader.ReadAsync(streamReader))
+        {
+            yield return stringParser.CreateNodeData(line);
+        }
     }
 }

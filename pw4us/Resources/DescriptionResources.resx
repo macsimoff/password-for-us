@@ -45,4 +45,10 @@
     <data name="CreateCommand" xml:space="preserve">
         <value>create a new entry to the storage</value>
     </data>
+    <data name="IC_Path" xml:space="preserve">
+        <value>path to the file to import</value>
+    </data>
+    <data name="IC_Format" xml:space="preserve">
+        <value>file format (txt/home, json, csv). Default: by file extension</value>
+    </data>
 </root>

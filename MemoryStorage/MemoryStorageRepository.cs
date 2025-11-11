@@ -82,6 +82,11 @@ public class MemoryStorageRepository: IRepository
         throw new NotImplementedException();
     }
 
+    public Task AddNodesAsync(IEnumerable<EncryptedData> models)
+    {
+        throw new NotImplementedException();
+    }
+
     public Task AddNodeAsync(PasswordForUs.Abstractions.Models.NodeData model)
     {
         throw new NotImplementedException();

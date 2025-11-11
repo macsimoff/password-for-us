@@ -123,6 +123,24 @@ namespace pw4us.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to file format (txt/home, json, csv). Default: by file extension.
+        /// </summary>
+        internal static string IC_Format {
+            get {
+                return ResourceManager.GetString("IC_Format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to path to the file to import.
+        /// </summary>
+        internal static string IC_Path {
+            get {
+                return ResourceManager.GetString("IC_Path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Path and file name for logging.
         /// </summary>
         internal static string LogSettings_LogFile {

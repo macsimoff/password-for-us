@@ -16,4 +16,5 @@ public interface IRepository
 
     Task<IEnumerable<EncryptedData>> FindNodeAsync(SearchDataModel node);
     Task AddNodeAsync(EncryptedData model);
+    Task AddNodesAsync(IEnumerable<EncryptedData> models);
 }

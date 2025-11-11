@@ -5,11 +5,10 @@ namespace PasswordForUsLibrary.Import.FileReader;
 
 public class LineFileReader : IFileReader
 {
-    public IEnumerable<string> Read(StreamReader reader)
+    public async IAsyncEnumerable<string> ReadAsync(StreamReader reader)
     {
         var builder = new StringBuilder();
-        var line = String.Empty;
-        while ((line = reader.ReadLine()) != null)
+        while (await reader.ReadLineAsync() is { } line)
         {
             if (string.IsNullOrWhiteSpace(line) && builder.Length > 0)
             {

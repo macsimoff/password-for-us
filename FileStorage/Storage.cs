@@ -72,6 +72,17 @@ public class Storage(string fileName) : IRepository, IDisposable
         await _fileStore.Write(data);
     }
 
+    public async Task AddNodesAsync(IEnumerable<EncryptedData> models)
+    {
+        var data = await _fileStore.ReadFileAsync();
+        foreach (var model in models)
+        {
+            model.Id = data.Nodes.Count();
+            data.Nodes.Add(ModelConvertor.Create(model));
+        }
+        await _fileStore.Write(data);
+    }
+
     public void Dispose()
     {
         _fileStore.Dispose();

@@ -38,4 +38,10 @@
     <data name="CreateCommand" xml:space="preserve">
         <value>создаем новую запись в хранилище</value>
     </data>
+    <data name="IC_Path" xml:space="preserve">
+        <value>путь к файлу для импорта</value>
+    </data>
+    <data name="IC_Format" xml:space="preserve">
+        <value>формат файла (txt/home, json, csv). По умолчанию — по расширению</value>
+    </data>
 </root>

@@ -10,6 +10,7 @@ using pw4us.AppConfig.Options;
 using pw4us.Infrastructure;
 using pw4us.Infrastructure.Interceptor;
 using Serilog;
+using PasswordForUsLibrary.Import;
 
 namespace pw4us.AppConfig;
 
@@ -51,6 +52,7 @@ public abstract class ServiceConfigurator
         services.AddTransient<IPassGenerator, PassGenerator>();
         services.AddTransient<ISearchDataController,SearchDataController>();
         services.AddTransient<ISaveDataController,SaveDataController>();
+        services.AddTransient<IImportService, ImportService>();
     }
 
     private static void InitializeLoggingDirectory()

@@ -2,5 +2,5 @@
 
 public interface IFileReader
 {
-    IEnumerable<string> Read(StreamReader reader);
+    IAsyncEnumerable<string> ReadAsync(StreamReader reader);
 }
